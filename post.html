@@ -1,0 +1,229 @@
+<html>
+    <head>
+        <title>Woodo: Eye to find weird things</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial;
+                background-color: #eaf4f9;
+                }
+            .bar {
+                padding: 8px 6px;
+                background: white;
+                color:black;
+                height: 70px;
+                }
+            .logoimage {
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                width: 45px;
+            }
+            .bar input[type=text] {
+                float: right;
+                padding: 6px;
+                margin-top: 8px;
+                margin-right: 16px;
+                border: solid;
+                border-color: darkgray;
+                border-width: 1px;
+                font-size: 17px;
+            }
+
+            @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+            .search {
+            position: relative;
+            color: #aaa;
+            font-size: 15px;
+            left: 35%;
+            top: 15%
+            }
+
+            .search input {
+            width: 400px;
+            height: 40px;
+            background: #fcfcfc;
+            border: 1px solid #6da0f2;
+            border-radius: 5px;
+            box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+            }
+
+            .search input { text-indent: 40px;}
+            .search .fa-search {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            }
+
+            .login{
+                color:black;
+		        background-color:#3d85c6;
+		        border:none;
+            /* padding:  */
+            border: 1px solid red;
+
+		        padding: 6px 8px;
+                font-size:12px;
+                color: white;
+                border-radius:10px;
+                width:65px;
+                font-weight: bold;
+                margin-left:35px;
+                text-decoration: none;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                text-align: center;
+            }
+
+            .separate{
+                display: block;
+                width: 100 vh;
+                background-color: #eaf4f9;
+                height: 10px;
+            }
+
+            .separate2{
+              /* border: 1px solid red; */
+                display: block;
+                width: 100 vh;
+                background-color: white;
+                height: 25px;
+            }
+
+            .row{
+              border: 1px solid red;
+            }
+
+            .separate3{
+                /* display: block; */
+                display: inline-block;
+                width: 33%;
+                background-color: white;
+                /* height: 25px; */
+            }
+            .category{
+              width: auto;
+            }
+            .content{
+                height: 100 vh;
+                display:block;
+                position: absolute;
+                left: 19%;
+                text-align:center;
+                width: 800px;
+                background-color: white;
+            }
+            .post{
+                background-color: white;
+                padding:30px;
+                font-size: 13px;
+                text-align: left;
+                height: 400px;
+
+            }
+
+            .button2{
+              text-align: center;
+            }
+            .image{
+                max-width: 400px;
+                height: auto;
+                text-align: left;
+            }
+            .user{
+                width:30px;
+                height: 30px;
+            }
+            .postcontent{
+                display: inline-block;
+            }
+            /* input table */
+
+            .input-block-level {
+              display: block;
+              width: 725px;
+              min-height: 30px;
+              box-sizing: separate;
+            }
+        </style>
+        <!-- Source: https://teamtreehouse.com/community/how-do-i-put-icons-inside-of-input-fields -->
+        <!-- Source: https://www.w3schools.com/w3css/w3css_icons.asp -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+    <body>
+
+        <div class="bar" id="myHeader">
+            <img class="logoimage" src="image/logo.jpg"/>
+            <div class="search">
+                    <span class="fa fa-search"></span>
+                    <input placeholder="Search Woodo...">
+            </div>
+        </div>
+
+        <a class="login" >Login</a>
+        <div class="separate"></div>
+        <div class="content">
+            <div class="post">
+
+              <!-- tilte -->
+              <div><input placeholder="Title"></div>
+
+              <div class="separate2"></div>
+              <!-- input box -->
+              <div><textarea class="input-block-level" rows="5" style="resize:vertical"></textarea></div>
+              <!-- category and tag -->
+              <div class="separate2"></div>
+              <div class = "row">
+              <select class = "category">
+                <option value="" disabled selected hidden>Please choose your category</option>
+                <option value="1">Animals</option>
+                <option value="2">People</option>
+                <option value="3">Event</option>
+                <option value="4">Other</option>
+              </select>
+              <div class="separate3"></div>
+              <dic class="separate3"><input placeholder="Search tags..."></div>
+
+
+                <!-- submit -->
+                <div class="separate2"></div>
+                  <div class="button2">
+                  <a class="clear" >Clear</a>
+                  <div class="separate3"></div>
+                  <a class="submit" >Submit</a>
+                </div>
+
+            </div>
+
+
+            </div>
+        </div>
+
+
+        <!-- <script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script> -->
+
+    </body>
+</html>
