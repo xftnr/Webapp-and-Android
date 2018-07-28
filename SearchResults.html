@@ -1,0 +1,185 @@
+<html>
+    <head>
+        <title>Woodo: Eye to find weird things</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial;
+                background-color: #eaf4f9;
+                }
+            #bar {
+                padding: 8px 6px;
+                background: white;
+                color:black;
+                height: 70px;
+                z-index: 100000;
+                width: 100%;
+                }
+
+            .sticky {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                }
+
+            .logoimage {
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                width: 45px;
+            }
+            
+            
+            @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+            .search {
+            position: relative;
+            color: #aaa;
+            font-size: 15px;
+            left: 35%;
+            top: 15%
+            }
+
+            .search input {
+            width: 400px;
+            height: 40px;
+            background: #fcfcfc;
+            border: 1px solid #6da0f2;
+            border-radius: 5px;
+            box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+            }
+
+            .search input { text-indent: 40px;}
+            .search .fa-search { 
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            }
+
+            .login{
+                color:black;
+		        background-color:#3d85c6;
+		        border:none;
+		        padding: 6px 8px;
+                font-size:12px;
+                color: white;
+                border-radius:10px;
+                width:65px;
+                font-weight: bold;
+                margin-left:35px;
+                text-decoration: none;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                text-align: center;
+            }
+            .content{
+                height: auto;
+                display:block;
+                position: absolute;
+                left: 19%;
+                text-align:center; 
+                width: 800px;
+                background-color: white;
+            }
+            
+            .header{
+                position: relative;
+                left:30px;
+            }
+            
+            .user{
+                width:30px;
+                height: 30px;
+            }
+            .postcontent{
+                display: inline-block;
+            }
+            .post-container {
+                margin: 20px 20px 0 0;  
+                overflow: auto;
+                page-break-before: always;
+            }
+            .post-thumb {
+                float: left;
+                position: relative;
+                left:20px;
+            }
+            .post-thumb img {
+                display: block;
+                width: 200px;
+                height: 100px;
+            }
+            .post-content {
+                text-align: left;
+                padding: 0;
+                float:left;
+                position: relative;
+                left:60px;
+                
+                
+            }
+            .post-title {
+                font-weight: bold;
+                font-size: 100%;
+                float:left;
+                position: relative;
+                left:5px;
+            }
+          
+        </style>
+        <!-- Source: https://teamtreehouse.com/community/how-do-i-put-icons-inside-of-input-fields -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+    <body>
+        <!-- https://www.youtube.com/watch?time_continue=334&v=nMKdHv8X6Fs -->
+        <div id="bar">
+            <a href="Main.html"><img class="logoimage" src="image/logo.jpg" data-ng-href="Main.html"/></a>
+            <div class="search">
+                <span class="fa fa-search"></span>
+                <input placeholder="animals">
+            </div>
+            <a class="login" >Login</a>
+        </div>
+        
+        <h3 class="header">Search results for "animals"</h3>
+        <div class="content">
+            <!--Source: https://stackoverflow.com/questions/5198392/css-float-floating-an-image-to-the-left-of-the-text-->
+            <div class="post-container">                
+                <div class="post-thumb"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-title">This is our first post.</h3><br/><br/>
+                    <img class="user" src="image/user1.jpg"/>
+                    <p class="postcontent"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div><hr/>
+            <div class="post-container">                
+                <div class="post-thumb"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-title">This is our first post.</h3><br/><br/>
+                    <img class="user" src="image/user1.jpg"/>
+                    <p class="postcontent"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div><hr/>
+            <div class="post-container">                
+                <div class="post-thumb"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-title">This is our first post.</h3><br/><br/>
+                    <img class="user" src="image/user1.jpg"/>
+                    <p class="postcontent"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div><hr/>
+            <div class="post-container">                
+                <div class="post-thumb"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-title">This is our first post.</h3><br/><br/>
+                    <img class="user" src="image/user1.jpg"/>
+                    <p class="postcontent"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div><hr/>
+
+
+        </div>
+       
+    </body>
+</html>
