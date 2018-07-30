@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <title>Woodo: Eye to find weird things</title>
+        <link rel="stylesheet" type="text/css" href="CSS/Profile.css"> 
+        <!-- Source: https://teamtreehouse.com/community/how-do-i-put-icons-inside-of-input-fields -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+    <body>
+        <!-- https://www.youtube.com/watch?time_continue=334&v=nMKdHv8X6Fs -->
+        <div id="bar">
+            <img class="logoimage" src="image/logo.jpg"/>
+            <div class="search">
+                <span class="fa fa-search"></span>
+                <input placeholder="Search Woodo...">
+            </div>
+            <a class="login" >Logout</a>
+        </div>
+        
+        <div class="leftside"><h2>My Profile</h2>
+            <div class="avatar">
+                <img class="user" src="image/user1.jpg"/>
+            </div>
+            <div class="username"><h4>Anonymous234</h4></div>
+            <div class-"email"><h5>iamweird@gmail.com</h5></div>
+            <div ></div>
+            <div class="category">
+                <a href="#"><b>Category</b></a>
+                <a href="#">Animals</a>
+                <a href="#">People</a>
+                <a href="#">Event</a>
+                <a href="#">Other</a>
+            </div>
+        </div>
+
+        <div class="rightside">
+            <h2>Your Recent Posts...</h2>
+            <div class="recent">                
+                <div class="post-image"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-description">This is our first post.</h3><br/><br/>
+                    <p class="post-category"><b>Category</b> | Animals</p>
+                    <img class="post-user" src="image/user1.jpg"/>
+                    <p class="post-time"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div><hr/>
+            <div class="recent">                
+                <div class="post-image"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-description">This is our first post.</h3><br/><br/>
+                    <p class="post-category"><b>Category</b> | Animals</p>
+                    <img class="post-user" src="image/user1.jpg"/>
+                    <p class="post-time"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div> 
+            <div class="recent">                
+                <div class="post-image"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-description">This is our first post.</h3><br/><br/>
+                    <p class="post-category"><b>Category</b> | Animals</p>
+                    <img class="post-user" src="image/user1.jpg"/>
+                    <p class="post-time"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div>   
+            <div class="recent">                
+                <div class="post-image"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-description">This is our first post.</h3><br/><br/>
+                    <p class="post-category"><b>Category</b> | Animals</p>
+                    <img class="post-user" src="image/user1.jpg"/>
+                    <p class="post-time"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div>    
+            <div class="recent">                
+                <div class="post-image"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-description">This is our first post.</h3><br/><br/>
+                    <p class="post-category"><b>Category</b> | Animals</p>
+                    <img class="post-user" src="image/user1.jpg"/>
+                    <p class="post-time"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div> 
+            <div class="recent">                
+                <div class="post-image"><img src="image/weird_animals_1.jpg"/></div>
+                <div class="post-content">
+                    <h3 class="post-description">This is our first post.</h3><br/><br/>
+                    <p class="post-category"><b>Category</b> | Animals</p>
+                    <img class="post-user" src="image/user1.jpg"/>
+                    <p class="post-time"><b>Anonymous345 </b>| Posted on Sunday, Jul 27, 2018</p>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var bar = document.getElementById("bar");
+            var sticky = bar.offsetTop;
+            
+            function myFunction() {
+              if (window.pageYOffset >= sticky) {
+                bar.classList.add("sticky")
+              } else {
+                bar.classList.remove("sticky");
+              }
+            }
+            </script>
+    </body>
+</html>
