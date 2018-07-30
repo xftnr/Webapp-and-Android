@@ -1,0 +1,184 @@
+/* CSS of Profile page */
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #eaf4f9;
+    }
+
+/* Sticky bar on top of the page. */    
+#bar {
+    padding: 8px 6px;
+    background: white;
+    color:black;
+    height: 70px;
+    z-index: 100000;
+    }
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    }
+
+.logoimage {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 45px;
+}
+
+/* Search Bar */
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+.search {
+position: relative;
+color: #aaa;
+font-size: 15px;
+left: 35%;
+top: 15%
+}
+
+.search input {
+width: 400px;
+height: 40px;
+background: #fcfcfc;
+border: 1px solid #6da0f2;
+border-radius: 5px;
+box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+}
+
+.search input { text-indent: 40px;}
+.search .fa-search { 
+position: absolute;
+top: 10px;
+left: 10px;
+}
+
+.login{
+    color:black;
+    background-color:#3d85c6;
+    border:none;
+    padding: 6px 8px;
+    font-size:12px;
+    color: white;
+    border-radius:10px;
+    width:65px;
+    font-weight: bold;
+    margin-left:35px;
+    text-decoration: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: center;
+}
+
+/* Divided the main page to two parts */
+/* left side */
+.leftside {background-color:#3d85c6;
+    width: 350px;
+    height:600px;
+    color:white;
+    float:left;
+    margin-right:10px;
+    border: 1px solid red;
+    margin-bottom: 1000px;
+
+    }
+h2{
+    padding: 10px;
+    position: relative;
+    left: 30px;
+    border: 1px solid red;
+}
+.user{
+    width:200px;
+    height: 200px;
+    padding: 5px;
+    position: relative;
+    left: 60px;
+    border: 1px solid red;
+}
+h4{
+    position: relative;
+    left: 90px;
+    margin: 5px;
+    border: 1px solid red;
+}
+h5{
+    position: relative;
+    left: 75px;
+    margin: 5px;
+    border: 1px solid red;
+}
+
+/* Category subscription */
+.category a{
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    position: relative;
+    left: 10px;
+    margin: 5px;
+    text-align: center;
+}
+.category{
+    border: 1px solid red;
+    position: relative;
+    left: -15px;
+    overflow-x: hidden;
+
+}
+/* rightside */
+/*recent posts */
+.rightside{
+    right: 0;
+}
+.recent{
+    border: 1px solid #3d85c6;
+    background-color: white;
+    height:150px;
+    width: 850px;
+    position: relative;
+    left:20px;
+    float: left;
+    clear: none;
+
+}
+.post-user{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: -120px;
+    top:30px;
+}
+.post-time{
+    display: inline-block;
+    position: relative;
+    left: -120px;
+    top:30px;
+}
+.post-image {
+    float: left;
+    position: relative;
+    left:20px;
+    top: 20px;
+}
+.post-image img {
+    display: block;
+    width: 200px;
+    height: 100px;
+}
+.post-description{
+    font-weight: bold;
+    font-size: 100%;
+    float:left;
+    position: relative;
+    left:35px;
+    top:20px;
+}
+.post-category{
+    font-size: 100%;
+    float:left;
+    position: relative;
+    left:35px;
+    top: 0px;
+}
