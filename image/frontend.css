@@ -91,19 +91,27 @@
   position: fixed;
   z-index: 1;
   top:100px;
+
   margin-left:40px;
 }
 
-.sticky-btn{
-  position: fixed;
-  z-index: 1;
-  top:820px;
-  margin-left:40px;
-}
+
 .back-to-top-btn button{
-  padding:5px 20px;
-  height:35px;
-  color:#ffff;
-  background-color: #1E90FF;
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
   outline: none;
+  background-color: #1E90FF;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  padding:5px 20px;
+}
+
+#myBtn {
+
 }
