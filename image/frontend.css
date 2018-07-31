@@ -1,0 +1,96 @@
+.top-block{
+  margin-top:2%;
+}
+.top-block img{
+  height:64px;
+}
+.website-title{
+  font-size: 44px;
+}
+.searchBox input{
+  height:44px;
+  width:100%;
+  margin:12px 0px;
+  outline: none;
+  text-align: center;
+}
+
+.login-btn button{
+  margin-top:17px;
+  height:35px;
+  width:50%;
+  color:#ffff;
+  background-color: #1E90FF;
+  outline: none;
+}
+.w3-dropdown-click, .w3-dropdown-hover {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 16px;
+}
+.w3-black, .w3-hover-black:hover {
+    color: #fff!important;
+    background-color: #1E90FF!important;
+}
+.custon-btn-width{
+  width:160px;
+  outline: none;
+}
+.body{
+  background: #eee;
+}
+.each-post{
+  margin: 20px 0px;
+  background: #fff;
+  border:1px solid #aaa;
+  padding:10px;
+}
+.post-metadata{
+    margin-bottom: 15px;
+}
+.post-metadata img{
+  width:3%;
+}
+.post-title{
+  color:
+}
+.post-content{
+  margin-bottom: 20px;
+}
+.post-image img{
+  max-height: 480px;
+  max-width: 830px;
+}
+.create-post{
+  margin-top:20px;
+}
+.create-post-btn button{
+  height:120px;
+  color:#ffff;
+  background-color: #1E90FF;
+  border-radius: 50%;
+  outline: none;
+  padding:20px;
+}
+
+.sticky-post {
+  position: fixed;
+  z-index: 1;
+  top:100px;
+  margin-left:40px;
+}
+
+.sticky-btn{
+  position: fixed;
+  z-index: 1;
+  top:820px;
+  margin-left:40px;
+}
+.back-to-top-btn button{
+  padding:5px 20px;
+  height:35px;
+  color:#ffff;
+  background-color: #1E90FF;
+  outline: none;
+}
