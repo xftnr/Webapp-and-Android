@@ -1,0 +1,228 @@
+body {
+  /* min-height: calc(100vh - 48px);
+  line-height: 1;
+  -webkit-font-smoothing: antialiased; */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: Arial;
+  background-color: #eaf4f9;
+}
+
+
+.bar {
+    /* border: 1px solid red; */
+    flex-direction: row;
+  height: 50px;
+  padding: 0 20px;
+  background: white;
+}
+/* .cut{
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
+} */
+
+.bar_left{
+    display: -webkit-inline-box;
+    -webkit-box-align: center;
+    align-items: center;
+    display: inline-flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+}
+
+.home{
+    display: inline-flex;
+    /* flex-direction: row; */
+}
+.cname{
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1px;
+}
+
+.bar_right{
+    -webkit-box-align: center;
+    align-items: center;
+    display: inline-flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.image{
+    height: 32px;
+    padding: 8px 8px 8px 0;
+    width: 32px;
+    /* -webkit-box-align: center;
+
+align-items: center;
+display: -webkit-inline-box;
+display: -ms-inline-flexbox;
+-webkit-box-orient: horizontal;
+-webkit-box-direction: normal;
+
+flex-direction: row; */
+}
+
+.logoimage {
+    max-width:100%;
+  max-height:100%;
+}
+
+/* @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"); */
+
+.search {
+  /* position: relative;
+  color: #aaa;
+  font-size: 15px;
+  left: 35%;
+  top: 15%
+  -webkit-appearance: none; */
+  background-color: rgb(246, 247, 248);
+  box-shadow: none;
+  color: rgb(28, 28, 28);
+  display: block;
+  height: 36px;
+  width: 100%;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(237, 239, 241);
+  border-image: initial;
+  outline: none;
+  padding: 0px 16px 0px 40px;
+}
+
+
+
+.search input {
+  width: 400px;
+  height: 40px;
+  background: #fcfcfc;
+  border: 1px solid #6da0f2;
+  border-radius: 5px;
+  box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+}
+
+.search input {
+  text-indent: 40px;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.login {
+  /* color: black;
+  background-color: #3d85c6;
+  border: none;
+  padding: 6px 8px;
+  font-size: 12px;
+  color: white;
+  border-radius: 10px;
+  width: 65px;
+  font-weight: bold;
+  margin-left: 35px;
+  text-decoration: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  text-align: center; */
+  border-width: 1px;
+border-style: solid;
+border-image: initial;
+border-radius: 4px;
+text-decoration: none;
+padding: 3px 16px;
+box-sizing: border-box;
+text-align: center;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.5px;
+line-height: 24px;
+text-transform: uppercase;
+background-color: #3d85c6;
+color: white;
+}
+
+/* .separate {
+  width: 100 vh;
+  background-color: #eaf4f9;
+  height: 10px;
+} */
+
+.content {
+  /* height: 100vh;
+  display: block;
+  position: absolute;
+  left: 19%;
+  text-align: center;
+  width: 800px;
+  background-color: white; */
+  min-width: 0px;
+    width: 100%;
+}
+
+.blow_bar {
+  padding: 20px 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  margin: 0px auto;
+}
+
+.post {
+  /* background-color: white;
+  padding: 30px;
+  font-size: 13px;
+  text-align: left;
+  height: 400px; */
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+  color: rgb(135, 138, 140);
+  fill: rgb(135, 138, 140);
+  cursor: pointer;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(204, 204, 204);
+  border-image: initial;
+  transition: color 0.5s, fill 0.5s, box-shadow 0.5s;
+}
+
+.image {
+  max-width: 400px;
+  height: auto;
+  text-align: left;
+}
+
+.user {
+  width: 30px;
+  height: 30px;
+}
+
+.postcontent {
+  display: inline-block;
+}

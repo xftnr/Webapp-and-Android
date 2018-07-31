@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- meta data -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Website for valveindex">
   <meta name="author" content="Weber Chen">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- import css and script -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <title>老漢project</title>
-  <link rel="stylesheet" href="frontend.css" />
+  <!-- local css and script -->
+  <link rel="stylesheet" href="CSS/index.css" />
+  <script src="js/index.js"></script>
+
+
+  <title>Woodo: Eye to find weird things</title>
 </head>
 <body>
+    <!-- the body container -->
   <div class="container">
     <div class="top-block">
+        <!-- post area -->
       <div class="row">
         <div class="col-md-1">
-          <img src="logo.jpg"  alt="logo image"/>
+          <img src="image/real_logo.jpg"  alt="logo image"/>
         </div>
         <div class="col-md-2 website-title">
           Woodo
@@ -52,7 +60,7 @@
         <div class="col-md-9">
           <div class="each-post">
             <div class="post-metadata">
-              <img src="user1.jpg" alt="user icon"/>
+              <img src="image/user1.jpg" alt="user icon"/>
               <span><b>Anonymous345</b></span>
               <span> | Posted on </span>
               <!-- {{ xxx date  -> bla bla }}-->
@@ -72,12 +80,12 @@
               This is our first post
             </div>
             <div class="post-image">
-              <img src="weird_animals_1.jpg" alt="weird animal image"/>
+              <img src="image/weird_animals_1.jpg" alt="weird animal image"/>
             </div>
           </div>
           <div class="each-post">
             <div class="post-metadata">
-              <img src="user1.jpg" alt="user icon"/>
+              <img src="image/user1.jpg" alt="user icon"/>
               <span><b>Anonymous345</b></span>
               <span> | Posted on </span>
               <!-- {{ xxx date  -> bla bla }}-->
@@ -97,7 +105,7 @@
               This is our first post
             </div>
             <div class="post-image">
-              <img src="weird_animals_1.jpg" alt="weird animal image"/>
+              <img src="image/weird_animals_1.jpg" alt="weird animal image"/>
             </div>
           </div>
 
@@ -116,32 +124,4 @@
     </div>
   </div>
 </body>
-
-<script>
-// JS for Category dropdown menu
-function myFunction() {
-  var x = document.getElementById("Demo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else {
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-
-// JS back to top button
-window.onscroll = function() {scrollFunction()};
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
-}
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
-
-</script>
 </html>
