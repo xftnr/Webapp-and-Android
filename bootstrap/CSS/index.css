@@ -19,25 +19,18 @@
 .login-btn{
   display: block;
 }
-.signout{
-  display: none;
-}
-.signout button{
+
+.login-btn a{
   margin-top:17px;
-  height:35px;
-  width:50%;
-  color:#ffff;
-  background-color: #1E90FF;
-  outline: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    color: #ffff;
+    background-color: #1E90FF;
+    text-align: center;
+    white-space: nowrap;
 }
-.login-btn button{
-  margin-top:17px;
-  height:35px;
-  width:50%;
-  color:#ffff;
-  background-color: #1E90FF;
-  outline: none;
-}
+
 .w3-dropdown-click, .w3-dropdown-hover {
     position: relative;
     display: inline-block;
@@ -49,7 +42,7 @@
     background-color: #1E90FF!important;
 }
 .custon-btn-width{
-  width:160px;
+  width:130px;
   outline: none;
 }
 .body{

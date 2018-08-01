@@ -12,8 +12,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- local css and script -->
-  <link rel="stylesheet" href="CSS/index.css" />
-  <script src="js/index.js"></script>
+  <link rel="stylesheet" href="bootstrap/CSS/index.css" />
+  <script src="bootstrap/js/index.js"></script>
 
 
   <title>Woodo: Eye to find weird things</title>
@@ -25,7 +25,7 @@
         <!-- post area -->
       <div class="row">
         <div class="col-md-1">
-          <img src="image/real_logo.jpg"  alt="logo image"/>
+          <img src="bootstrap/image/real_logo.jpg"  alt="logo image"/>
         </div>
         <div class="col-md-2 website-title">
           Woodo
@@ -45,10 +45,7 @@
         </div>
         <div class="col-md-2">
           <div class="login-btn">
-              <button type="button">Login</button>
-          </div>
-          <div class="signout">
-            <button type="button">Sign Out</button>
+              <a href="{{ url|safe }}">{{ url_linktext }}</a>
           </div>
         </div>
       </div>
@@ -60,10 +57,9 @@
         <div class="col-md-9">
           <div class="each-post">
             <div class="post-metadata">
-              <img src="image/user1.jpg" alt="user icon"/>
+              <img src="bootstrap/image/user1.jpg" alt="user icon"/>
               <span><b>Anonymous345</b></span>
               <span> | Posted on </span>
-              <!-- {{ xxx date  -> bla bla }}-->
               <span> Sunday, Jul 27, 2018</span>
             </div>
             <div class="post-title">
@@ -80,15 +76,15 @@
               This is our first post
             </div>
             <div class="post-image">
-              <img src="image/weird_animals_1.jpg" alt="weird animal image"/>
+              <img src="bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
             </div>
           </div>
           <div class="each-post">
             <div class="post-metadata">
-              <img src="image/user1.jpg" alt="user icon"/>
+              <img src="bootstrap/image/user1.jpg" alt="user icon"/>
               <span><b>Anonymous345</b></span>
               <span> | Posted on </span>
-              <!-- {{ xxx date  -> bla bla }}-->
+
               <span> Sunday, Jul 27, 2018</span>
             </div>
             <div class="post-title">
@@ -105,7 +101,7 @@
               This is our first post
             </div>
             <div class="post-image">
-              <img src="image/weird_animals_1.jpg" alt="weird animal image"/>
+              <img src="bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
             </div>
           </div>
 
