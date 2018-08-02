@@ -1,0 +1,41 @@
+
+.body{
+    background: #fff;
+}
+.error{
+    background-color: #eee;
+    position: relative;
+    left:75%;
+    top:200px;
+}
+.error img{
+    height:80px;
+    width: 87px;
+    border-radius: 50%;
+    margin: 30px;
+    position: relative;
+    left: 35%;
+}
+.error-message{
+    margin-left:40px;
+    margin-right:40px;
+}
+.home-btn button{
+    margin-top:25px;
+    margin-bottom: 30px;
+    height:35px;
+    width:35%;
+    color:#ffff;
+    background-color: #1E90FF;
+    outline: none;
+    position: relative;
+    left:34%;
+}
+.home-btn{
+    display: block;
+}
+.message{
+    font-size: 20px;
+    position: relative;
+    left:28%;
+}
