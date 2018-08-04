@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Woodo: Eyes to Find Weird Things</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="resource/css/post.css" rel="stylesheet">
+</head>
+<body>
+    <!--Source: https://www.youtube.com/watch?v=9cKsq14Kfsw&t=2980s-->
+    <!--Source:https://getbootstrap.com/docs/3.3/components/#pagination-->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="resource/image/logo.jpg"></a>
+            <div class="col-lg-5 searchBox">
+                <input type="text" placeholder="Search whatever you want ..."/>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Category
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">People</a></li>
+                    <li><a href="#">Animals</a></li>
+                    <li><a href="#">Events</a></li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    
+                    <li lass="nav-item">
+                        <a class="nav-link" href="#"><b>Login</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br/><br/>
+    <!-- Create a post -->
+    <div class="col-md-4">
+    <h3>Create your post here</h3>
+</div><br/>
+    <form class="col-sm-12 col-md-10" id="createPost">
+        <div class="form-group">
+            <label>Post Title</label>
+            <input class="form-control" placeholder="What did you see?">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Tell us more about it."></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Choose your category(-ies)</label>
+            <select multiple class="form-control" id="exampleFormControlSelect1">
+            <option>People</option>
+            <option>Animals</option>
+            <option>Events</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Choose your tag(s)</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+            <option>dog</option>
+            <option>cat</option>
+            <option>woman</option>
+            <option>man</option>
+            <option>festival</option>
+            </select>
+        </div> 
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Choose your image(s)</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <center><input type="reset" value="Reset" class="form-btn">  <input type="submit" value="Submit" class="form-btn"></center>
+    </form>
+    <br/><br/>
+    <!-- Footer -->
+    <footer>
+        <div class="copyright col-12"> © 2018 Copyright: WoodoTeam</div>
+    </footer>
+</body>
+</html>
