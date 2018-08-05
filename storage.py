@@ -59,7 +59,7 @@ class IndexPage(webapp2.RequestHandler):
             'url_linktext': url_linktext,
         }
 
-        template = JINJA_ENVIRONMENT.get_template('index.html')
+        template = JINJA_ENVIRONMENT.get_template('/Front-End/index.html','/Front-End/post.html')
         self.response.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([

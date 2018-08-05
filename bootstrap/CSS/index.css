@@ -1,112 +1,62 @@
-.top-block{
-  margin-top:2%;
+.navbar-brand img{
+  height:53px;
+  width: 156px;
 }
-.top-block img{
-  height:64px;
-  width: 70px;
-  border-radius: 50%;
+.navbar{
+  background-color: black;
 }
-.website-title{
-  font-size: 44px;
+.navbar-nav li{
+  padding-right: 10px;
 }
+.nav-link{
+font-size: 1.1em !important;
+color:  white;
+}
+
 .searchBox input{
-  height:44px;
+  height:30px;
   width:100%;
   margin:12px 0px;
   outline: none;
-  text-align: center;
+  text-align: left;
 }
-.login-btn{
-  display: block;
+.newpost{
+  border: 1px dotted white;
 }
-
-.login-btn a{
-  margin-top:17px;
-    display: inline-block;
-    padding: 8px 16px;
-    vertical-align: middle;
-    color: #ffff;
-    background-color: #1E90FF;
-    text-align: center;
-    white-space: nowrap;
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 70%;               
+  background-color:darkgray;
+  height: 1px;
 }
-
-.w3-dropdown-click, .w3-dropdown-hover {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    margin-top: 16px;
-}
-.w3-black, .w3-hover-black:hover {
-    color: #fff!important;
-    background-color: #1E90FF!important;
-}
-.custon-btn-width{
-  width:130px;
-  outline: none;
-}
-.body{
-  background: #eee;
-}
-.each-post{
-  margin: 20px 0px;
+.post{
+  margin: 15px 0;
   background: #fff;
-  border:1px solid #aaa;
-  padding:10px;
+
 }
-.post-metadata{
-    margin-bottom: 15px;
-}
-.post-metadata img{
-  width:3%;
-}
-.post-title{
-  color:
-}
-.post-content{
-  margin-bottom: 20px;
-}
-.post-image img{
-  max-height: 480px;
-  max-width: 630px;
-}
-.create-post{
-  margin-top:20px;
-}
-.create-post-btn button{
-  height:120px;
-  color:#ffff;
-  background-color: #1E90FF;
-  border-radius: 50%;
-  outline: none;
-  padding:20px;
+.card-author img{
+  width:7%;
 }
 
-.sticky-post {
-  position: fixed;
-  z-index: 1;
-  top:100px;
+footer{
+  width: 100%;
 
-  margin-left:40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(71, 100, 163);
+
 }
-
-
-.back-to-top-btn button{
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: #1E90FF;
+.copyright{
   color: white;
-  cursor: pointer;
-  border-radius: 4px;
-  padding:5px 20px;
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+}
+.btn{
+  background-color: black;
+  color: white;
 }
 
-#myBtn {
-
-}

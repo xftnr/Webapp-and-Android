@@ -1,0 +1,32 @@
+.post{
+    background-color: white;
+    padding:30px;
+    font-size: 13px;
+    text-align: left;
+    height: 400px;
+
+}
+
+.button2{
+  text-align: center;
+}
+.image{
+    max-width: 400px;
+    height: auto;
+    text-align: left;
+}
+.user{
+    width:30px;
+    height: 30px;
+}
+.postcontent{
+    display: inline-block;
+}
+/* input table */
+
+.input-block-level {
+  display: block;
+  width: 725px;
+  min-height: 30px;
+  box-sizing: separate;
+}
