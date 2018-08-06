@@ -9,7 +9,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link href="resource/css/post.css" rel="stylesheet">
+    <link href="../bootstrap/css/post.css" rel="stylesheet">
 </head>
 <body>
     <!--Source: https://www.youtube.com/watch?v=9cKsq14Kfsw&t=2980s-->
@@ -17,7 +17,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="resource/image/logo.jpg"></a>
+            <a class="navbar-brand" href="#"><img src="../bootstrap/image/logo.jpg"></a>
             <div class="col-lg-5 searchBox">
                 <input type="text" placeholder="Search whatever you want ..."/>
             </div>
@@ -59,15 +59,15 @@
     <form class="col-sm-12 col-md-10" id="createPost">
         <div class="form-group">
             <label>Post Title</label>
-            <input class="form-control" placeholder="What did you see?">
+            <input class="form-control" name="title" placeholder="What did you see?">
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Tell us more about it."></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3" placeholder="Tell us more about it."></textarea>
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Choose your category(-ies)</label>
-            <select multiple class="form-control" id="exampleFormControlSelect1">
+            <select multiple class="form-control" name="category" id="exampleFormControlSelect1">
             <option>People</option>
             <option>Animals</option>
             <option>Events</option>

@@ -11,6 +11,9 @@ handlers:
 - url: /bootstrap
   static_dir: bootstrap
 
+# - url: /Front-End
+#     static_dir: Front-End
+
 - url: /.*
   script: storage.app
 # [END handlers]

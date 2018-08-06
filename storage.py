@@ -38,9 +38,18 @@ class Stmessage (ndb.Model):
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    loader=jinja2.FileSystemLoader('Front-End'),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+
+# class MainHandler(webapp2.RequestHandler):
+#     def get(self):
+#         # template = JINJA_ENVIRONMENT.get_template('/Front-End/coverpage.html')
+#         self.response.write(/Front-End/coverpage.html)
+
+# class MainPage(webapp2.RequestHandler):
+#     def get(self):
+#         self.redirect('/Front-End/coverpage.html', permanent=True)
 
 class IndexPage(webapp2.RequestHandler):
 
@@ -59,9 +68,46 @@ class IndexPage(webapp2.RequestHandler):
             'url_linktext': url_linktext,
         }
 
-        template = JINJA_ENVIRONMENT.get_template('/Front-End/index.html','/Front-End/post.html')
+        template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render(template_values))
 
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+         # template_values = {
+         #     # 'user': user,
+         #     'url': url,
+         #     # 'url_linktext': url_linktext,
+         # }
+
+         template = JINJA_ENVIRONMENT.get_template('coverpage.html')
+         self.response.write(template.render())
+
+class PostPage(webapp2.RequestHandler):
+    def get(self):
+        # need to get category, tag
+         user = users.get_current_user()
+         if user:
+             url = users.create_logout_url(self.request.uri)
+             url_linktext = 'Logout'
+         else:
+             url = users.create_login_url(self.request.uri)
+             url_linktext = 'Login'
+
+         template_values = {
+             'user': user,
+             'url': url,
+             'url_linktext': url_linktext,
+         }
+
+         template = JINJA_ENVIRONMENT.get_template('post.html')
+         self.response.write(template.render(template_values))
+
+    def post(self):
+
+
+
 app = webapp2.WSGIApplication([
-        ('/', IndexPage),
+        ('/', MainPage),
+        ('/index.html', IndexPage),
+        ('/post.html', PostPage),
 ], debug=True)
