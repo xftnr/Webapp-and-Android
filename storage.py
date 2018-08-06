@@ -9,10 +9,18 @@ import webapp2
 
 from google.appengine.api import users
 
+
+
+class Author(ndb.Model):
+    # anonymous number
+    # nickname = ndb.StringProperty(required = True)
+    identity = ndb.StringProperty(indexed=False)
+    email = ndb.StringProperty(indexed=False)
+
 #main model for each post
 class Stmessage (ndb.Model):
-    email = ndb.StringProperty(indexed=False)
-    # author = ndb.StructuredProperty(Author)
+    # email = ndb.StringProperty(indexed=False)
+    author = ndb.StructuredProperty(Author)
     create_time = ndb.DateTimeProperty(auto_now_add= True)
     # should be a list, allow one user post multiple pic in one post
     # image = ndb.StructuredProperty(Image)
@@ -23,10 +31,7 @@ class Stmessage (ndb.Model):
     # May need change to list, one post can have multiple tags
     # tag = ndb.StringProperty(index = False)
 
-# class Author(ndb.Model):
-    #anonymous number
-    # nickname = ndb.StringProperty(required = True)
-    # email = ndb.StringProperty(indexed=False)
+
 
 # class Image(ndb.model):
 #     img = ndb.BlobKeyProperty(required = True, indexed = False)
@@ -103,7 +108,26 @@ class PostPage(webapp2.RequestHandler):
          self.response.write(template.render(template_values))
 
     def post(self):
+        post = Stmessage()
+        # alert if you do not login
+        # if !(users.get_current_user()):
 
+        if users.get_current_user():
+        # else :
+            post.author = Author(
+                    identity=users.get_current_user().user_id(),
+                    email=users.get_current_user().email())
+        post.title = self.request.get('title')
+        post.theme = self.request.get('categories')
+        # tag
+        # categories = ', '.join(str(e) for e in self.request.params.getall('categories'))
+        # Stmessage.theme = categories
+        post.content = self.request.get('content')
+        post.put()
+
+        # query_params = {'woodo_name': woodo_name}
+        #self.redirect('/?' + urllib.urlencode(query_params))
+        self.redirect('/index.html')
 
 
 app = webapp2.WSGIApplication([

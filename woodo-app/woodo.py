@@ -59,7 +59,7 @@ class Posts(ndb.Model):
 class MainPage(webapp2.RequestHandler):
 
     def get(self):
-        
+
         woodo_name = self.request.get('woodo_name',
                                           DEFAULT_APP_NAME)
         posts_query = Posts.query(
@@ -74,7 +74,7 @@ class MainPage(webapp2.RequestHandler):
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
 
-       
+
         template_values = {
             'user': user,
             'posts': posts,
@@ -82,15 +82,15 @@ class MainPage(webapp2.RequestHandler):
             'url': url,
             'url_linktext': url_linktext
         }
-        
-      
+
+
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render(template_values))
 # [END main_page]
 
 
 # [START post_page]
-class PostPage(webapp2.RequestHandler):   
+class PostPage(webapp2.RequestHandler):
 
     def get(self):
         woodo_name = self.request.get('woodo_name',
@@ -128,7 +128,7 @@ class Woodo(webapp2.RequestHandler):
 
         query_params = {'woodo_name': woodo_name}
         #self.redirect('/?' + urllib.urlencode(query_params))
-       
+
         self.redirect('/')
 # [END woodo]
 
