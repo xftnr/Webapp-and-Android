@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% autoescape true %}
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -14,6 +15,7 @@
     <script src="../bootstrap/js/index.js"></script>
 </head>
 <body>
+
     <!--Source: https://www.youtube.com/watch?v=9cKsq14Kfsw&t=2980s-->
     <!--Source:https://getbootstrap.com/docs/3.3/components/#pagination-->
     <!-- Navigation -->
@@ -50,7 +52,7 @@
                         <a class="nav-link" href="{{ url|safe }}">{{ url_linktext }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link newpost" href="post.html"><b>Create New Post</b></a>
+                        <a class="nav-link newpost" href="post"><b>Create New Post</b></a>
                     </li>
 
                 </ul>
@@ -75,9 +77,29 @@
     </div>
     <br/><br/>
     <!-- Posts -->
+
     <div class="container-fluid padding">
         <div class="row padding">
+			{% for post in posts %}
             <div class="col-md-4 post">
+                <div class="card">
+                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ post.title }}</h4>
+                        <p class="card-text">{{ post.content | truncate(66) }}</p>
+                        <div class="card-author">
+                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
+                            <span><b>Anonymous</b></span>
+                            <span> | </span>
+                            <span> {{ post.create_time.strftime('%A, %B %d, %Y') }}</span>
+                            <br/>
+                            <center><i class="fa fa-map-pin"></i><span>Austin, TX</span></center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			{% endfor %}
+			<div class="col-md-4 post">
                 <div class="card">
                     <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
                     <div class="card-body">
@@ -94,100 +116,13 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-4 post">
-                <div class="card">
-                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
-                    <div class="card-body">
-                        <h4 class="card-title">This will be the title part</h4>
-                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
-                        <div class="card-author">
-                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
-                            <span><b>Anonymous345</b></span>
-                            <span> | </span>
-                            <span> Sunday, Jul 27, 2018</span>
-                            <br/>
-                            <center><i class="fa fa-map-pin"></i><span>Austin, TX</span></center>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 post">
-                <div class="card">
-                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
-                    <div class="card-body">
-                        <h4 class="card-title">This will be the title part</h4>
-                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
-                        <div class="card-author">
-                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
-                            <span><b>Anonymous345</b></span>
-                            <span> | </span>
-                            <span> Sunday, Jul 27, 2018</span>
-                            <br/>
-                            <center><i class="fa fa-map-pin"></i><span>Austin, TX</span></center>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 post">
-                <div class="card">
-                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
-                    <div class="card-body">
-                        <h4 class="card-title">This will be the title part</h4>
-                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
-                        <div class="card-author">
-                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
-                            <span><b>Anonymous345</b></span>
-                            <span> | </span>
-                            <span> Sunday, Jul 27, 2018</span>
-                            <br/>
-                            <center><i class="fa fa-map-pin"></i><span>Austin, TX</span></center>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 post">
-                <div class="card">
-                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
-                    <div class="card-body">
-                        <h4 class="card-title">This will be the title part</h4>
-                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
-                        <div class="card-author">
-                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
-                            <span><b>Anonymous345</b></span>
-                            <span> | </span>
-                            <span> Sunday, Jul 27, 2018</span>
-                            <br/>
-                            <center><i class="fa fa-map-pin"></i><span>Austin, TX</span></center>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 post">
-                <div class="card">
-                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
-                    <div class="card-body">
-                        <h4 class="card-title">This will be the title part</h4>
-                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
-                        <div class="card-author">
-                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
-                            <span><b>Anonymous345</b></span>
-                            <span> | </span>
-                            <span> Sunday, Jul 27, 2018</span>
-                            <br/>
-                            <center><i class="fa fa-map-pin"></i><span>Austin, TX</span></center>
-                        </div>
-                    </div>
-                </div>
-            </div>
+		</div>
+	</div>
 
     <!-- Footer -->
     <footer>
-        <div class="copyright col-12"> © 2018 Copyright: WoodoTeam</div>
+        <div class="copyright col-12"> &copy 2018 Copyright: WoodoTeam</div>
     </footer>
 </body>
 </html>
+{% endautoescape %}

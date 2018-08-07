@@ -7,6 +7,8 @@ import urllib
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
+from google.appengine.api import images
+
 
 #from flask import Flask, flash
 
@@ -14,6 +16,7 @@ from google.appengine.ext import ndb
 
 import jinja2
 import webapp2
+
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -43,6 +46,8 @@ class Author(ndb.Model):
     """Sub model for representing an author."""
     identity = ndb.StringProperty(indexed=False)
     email = ndb.StringProperty(indexed=False)
+    nickname = ndb.StringProperty(indexed=False)
+
 
 
 class Posts(ndb.Model):
@@ -52,6 +57,8 @@ class Posts(ndb.Model):
     categories = ndb.StringProperty(indexed=False)
     content = ndb.StringProperty(indexed=False)
     date = ndb.DateTimeProperty(auto_now_add=True)
+    istrue = ndb.BooleanProperty(indexed=True)
+    post_image = ndb.BlobProperty()
 # [END Author]
 
 
@@ -59,7 +66,7 @@ class Posts(ndb.Model):
 class MainPage(webapp2.RequestHandler):
 
     def get(self):
-
+        
         woodo_name = self.request.get('woodo_name',
                                           DEFAULT_APP_NAME)
         posts_query = Posts.query(
@@ -74,7 +81,7 @@ class MainPage(webapp2.RequestHandler):
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
 
-
+       
         template_values = {
             'user': user,
             'posts': posts,
@@ -82,22 +89,36 @@ class MainPage(webapp2.RequestHandler):
             'url': url,
             'url_linktext': url_linktext
         }
-
-
+        
+      
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render(template_values))
 # [END main_page]
 
 
 # [START post_page]
-class PostPage(webapp2.RequestHandler):
+class PostPage(webapp2.RequestHandler):   
 
     def get(self):
         woodo_name = self.request.get('woodo_name',
                                           DEFAULT_APP_NAME)
+        user = users.get_current_user()
+        url=""
+        url_linktext=""
+        if user:
+            url = users.create_logout_url(self.request.uri)
+            url_linktext = 'Logout'
+        else:
+            self.redirect('/')
+
+       
         template_values = {
+            'user': user,
+            'url': url,
             'woodo_name': urllib.quote_plus(woodo_name),
-        }
+            'url_linktext': url_linktext
+        }								  
+										  
         template = JINJA_ENVIRONMENT.get_template('post.html')
         self.response.write(template.render(template_values))
 # [END post_page]
@@ -119,24 +140,41 @@ class Woodo(webapp2.RequestHandler):
         if users.get_current_user():
             post.author = Author(
                     identity=users.get_current_user().user_id(),
-                    email=users.get_current_user().email())
+                    email=users.get_current_user().email(),
+                    nickname = users.get_current_user().nickname())
         post.title = self.request.get('title')
         categories = ', '.join(str(e) for e in self.request.params.getall('categories'))
         post.categories = categories
         post.content = self.request.get('content')
+        postImage = self.request.get('post_image')
+        postImage = images.resize(postImage,200,250)
+        post.post_image=postImage
         post.put()
 
         query_params = {'woodo_name': woodo_name}
         #self.redirect('/?' + urllib.urlencode(query_params))
-
+       
         self.redirect('/')
 # [END woodo]
 
+# [Start Image]
+class Image(webapp2.RequestHandler):
+    def get(self):
+        post_key=ndb.Key(urlsafe=self.request.get('img_id'))
+        post= post_key.get()
+        if post.post_image:
+            self.response.headers['Content-Type'] = 'img/png'
+            self.response.out.write(post.post_image)
+        else:
+            self.response.out.write('No image')
+
+#[END Image]
 
 # [START app]
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/newpost', PostPage),
     ('/submit', Woodo),
+    ('/myimg',Image),
 ], debug=True)
 # [END app]

@@ -35,7 +35,7 @@
       	 <div class="col-md-6">
 	          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
 	            <div class="card-body d-flex flex-column align-items-start">
-	              <strong class="d-inline-block mb-2 text-primary"> <img class="user round" src="/assets/images/user.jpg"/> Anonymous</strong>
+	              <strong class="d-inline-block mb-2 text-primary"> <img class="user round" src="/assets/images/user.jpg"/> {{post.author.nickname}}</strong>
 	              <h3 class="mb-0">
 	                <a class="text-dark" href="#">{{ post.title }}</a>
 	              </h3>
@@ -43,7 +43,7 @@
 	              <p class="card-text mb-auto">{{ post.content | truncate(70) }}</p>
 	              <div class="mb-1 text-muted">Categories: {{ post.categories }}</div>
 	            </div>
-	           <img class="card-img-right flex-auto"  alt="weird_animals" style="width: 200px; height: 250px;" src="/assets/images/animal_{{ range(1, 4) | random }}.jpg" data-holder-rendered="true">
+	           <img class="card-img-right flex-auto"  alt="{{post.title}}" style="width: 200px; height: 250px;" src="/myimg?img_id={{post.key.urlsafe()}}" data-holder-rendered="true">
 	          </div>
 	        </div>
 	     

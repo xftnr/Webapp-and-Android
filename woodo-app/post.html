@@ -31,13 +31,13 @@
        
        <div class="row mb-2">
 	        <div class="col-md-12">
-	          <form method="post" action="/submit?woodo_name={{ woodo_name }}">
+	          <form method="post" action="/submit?woodo_name={{ woodo_name }}" enctype="multipart/form-data">
 				  <div class="form-group">
-				    <label for="postTitle">Title</label>
+				    <label for="postTitle" class="woodo-label">Title</label>
 				    <input type="text" class="form-control" name="title" id="postTitle" placeholder="Enter title here..">
 				  </div>
 				  <div class="form-group">
-				    <label for="postCategory">Categories</label>
+				    <label for="postCategory" class="woodo-label">Categories</label>
 				    <select class="form-control" name="categories" multiple  id="postCategory">
 		                <option value="Animals">Animals</option>
 		                <option value="People">People</option>
@@ -47,9 +47,14 @@
 				  </div>
 				 
 				  <div class="form-group">
-				    <label for="postContent">Description</label>
+				    <label for="postContent" class="woodo-label">Description</label>
 				    <textarea class="form-control" id="postContent" name="content" rows="3" placeholder="Your content here.."></textarea>
 				  </div>
+				  
+				  <div class="form-group">
+				    <label for="postImage" class="woodo-label">Image</label>
+				    <input class="form-control-file" id="postImage" type="file" name="post_image" required="required" accept="image/*">
+				  </div>				  
 				  
 				  <div class="form-group row">
 				    <div class="col-md-12 text-center">

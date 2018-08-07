@@ -10,7 +10,9 @@ import webapp2
 from google.appengine.api import users
 
 
-
+# themes
+# tags
+# images
 class Author(ndb.Model):
     # anonymous number
     # nickname = ndb.StringProperty(required = True)
@@ -23,7 +25,7 @@ class Stmessage (ndb.Model):
     author = ndb.StructuredProperty(Author)
     create_time = ndb.DateTimeProperty(auto_now_add= True)
     # should be a list, allow one user post multiple pic in one post
-    # image = ndb.StructuredProperty(Image)
+    # image = ndb.BlobKeyProperty(required = True, indexed = False)
 
     title = ndb.StringProperty(required = True)
     content = ndb.StringProperty(indexed = False)
@@ -59,6 +61,10 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class IndexPage(webapp2.RequestHandler):
 
     def get(self):
+        # get all
+        posts_query = Stmessage.query()
+        posts = posts_query.fetch(20)
+
         user = users.get_current_user()
         if user:
             url = users.create_logout_url(self.request.uri)
@@ -69,6 +75,7 @@ class IndexPage(webapp2.RequestHandler):
 
         template_values = {
             'user': user,
+            'posts': posts,
             'url': url,
             'url_linktext': url_linktext,
         }
@@ -108,10 +115,11 @@ class PostPage(webapp2.RequestHandler):
          self.response.write(template.render(template_values))
 
     def post(self):
+
         post = Stmessage()
         # alert if you do not login
         # if !(users.get_current_user()):
-
+            # self.error(404)
         if users.get_current_user():
         # else :
             post.author = Author(
@@ -123,6 +131,7 @@ class PostPage(webapp2.RequestHandler):
         # categories = ', '.join(str(e) for e in self.request.params.getall('categories'))
         # Stmessage.theme = categories
         post.content = self.request.get('content')
+        # post.image =
         post.put()
 
         # query_params = {'woodo_name': woodo_name}
@@ -132,6 +141,7 @@ class PostPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
         ('/', MainPage),
-        ('/index.html', IndexPage),
+        ('/index', IndexPage),
         ('/post.html', PostPage),
+        # ('/submit', Woodo),
 ], debug=True)
