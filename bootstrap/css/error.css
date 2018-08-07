@@ -1,0 +1,48 @@
+/* import fonts*/
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+
+body{
+    background-color: black;
+}
+.error{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -70%);
+}
+.line1{
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, 180%);
+}
+.line2{
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, 300%);
+}
+button{
+    background: none;
+    color:white;
+    width:120px;
+    height: 50px;
+    border: 1px solid white;
+    font-size: 15px;
+    border-radius: 5%;
+    overflow: hidden;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, 350%);
+}
+button:hover{
+    background-color: white;
+    color: black;
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Woodo: Eyes to Find Weird Things</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="../bootstrap/css/profile.css" rel="stylesheet">
+    <script src="../bootstrap/js/profile.js"></script>
+</head>
+<body>
+    <!--Source: https://www.youtube.com/watch?v=9cKsq14Kfsw&t=2980s-->
+    <!--Source:https://getbootstrap.com/docs/3.3/components/#pagination-->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="../bootstrap/image/logo.jpg"></a>
+            <div class="col-lg-5 searchBox">
+                <input type="text" placeholder="Search whatever you want ..."/>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Category
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="item"><a href="results.html">People</a></li>
+                    <li><a href="results.html">Animals</a></li>
+                    <li><a href="results.html">Events</a></li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url|safe }}">{{ url_linktext }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link newpost" href="post.html"><b>Create New Post</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br/><br/>
+    
+    <!--Source: https://www.youtube.com/watch?v=jWgeqeJcJ0Y-->
+    <div class="container-fluid">
+        <div class="row profile">
+            <!-- Left column of profile -->
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <div class="user-pic">
+                        <img src="../bootstrap/image/user1.jpg" class="img-responsive"/>
+                    </div><br/>
+                    <div class="user-title">
+                        <div class="user-account">
+                            <h4><span>Account:</span> Anonymous345</h4>
+                        </div>
+                        <div class="user-email">
+                            <h4><span>Email:</span> newtowoodo@gmail.com</h4>
+                        </div>
+                        <div class="user-button">
+                            <button class="btn btn-outline-success btn-md">Follow</button>
+                            <button class="btn btn-outline-danger btn-md">Message</button>
+                        </div><br/>
+                        <div class="user-menu">
+                            <ul class="side-nav">
+                                <li><a href="#section-home" class="w3-bar-item w3-button w3-border-bottom"><i class="fa fa-home"></i> Home</a></li>
+                                <li><a href="#section-location" class="w3-bar-item w3-button w3-border-bottom"><i class="fa fa-map-pin"></i> Location</a></li>
+                                <li><a href="#section-category" class="w3-bar-item w3-button w3-border-bottom"><i class="fa fa-list"></i> Subscribed Category</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right column of profile -->
+            <div class="col-md-9">
+                <!--Sidebar: Home-->
+                <div id="section-home" class="tab-content">
+                    <h3><b>Your Post Histroy...</b></h3>
+                    <div class="container-fluid padding">
+                        <div class="row padding">
+                            <div class="col-md-4 post">
+                                <div class="card">
+                                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+                                    <div class="card-body">
+                                        <h4 class="card-title">This will be the title part</h4>
+                                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
+                                        <div class="card-author">
+                                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
+                                            <span><b>Anonymous345</b></span><br/>
+                                            <span> Sunday, Jul 27, 2018</span>
+                                            <span> | </span>
+                                            <i class="fa fa-map-pin"></i><span>Austin, TX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 post">
+                                <div class="card">
+                                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+                                    <div class="card-body">
+                                        <h4 class="card-title">This will be the title part</h4>
+                                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
+                                        <div class="card-author">
+                                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
+                                            <span><b>Anonymous345</b></span><br/>
+                                            <span> Sunday, Jul 27, 2018</span>
+                                            <span> | </span>
+                                            <i class="fa fa-map-pin"></i><span>Austin, TX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 post">
+                                <div class="card">
+                                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+                                    <div class="card-body">
+                                        <h4 class="card-title">This will be the title part</h4>
+                                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
+                                        <div class="card-author">
+                                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
+                                            <span><b>Anonymous345</b></span><br/>
+                                            <span> Sunday, Jul 27, 2018</span>
+                                            <span> | </span>
+                                            <i class="fa fa-map-pin"></i><span>Austin, TX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 post">
+                                <div class="card">
+                                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+                                    <div class="card-body">
+                                        <h4 class="card-title">This will be the title part</h4>
+                                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
+                                        <div class="card-author">
+                                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
+                                            <span><b>Anonymous345</b></span><br/>
+                                            <span> Sunday, Jul 27, 2018</span>
+                                            <span> | </span>
+                                            <i class="fa fa-map-pin"></i><span>Austin, TX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="col-md-4 post">
+                                <div class="card">
+                                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+                                    <div class="card-body">
+                                        <h4 class="card-title">This will be the title part</h4>
+                                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
+                                        <div class="card-author">
+                                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
+                                            <span><b>Anonymous345</b></span><br/>
+                                            <span> Sunday, Jul 27, 2018</span>
+                                            <span> | </span>
+                                            <i class="fa fa-map-pin"></i><span>Austin, TX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="col-md-4 post">
+                                <div class="card">
+                                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+                                    <div class="card-body">
+                                        <h4 class="card-title">This will be the title part</h4>
+                                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
+                                        <div class="card-author">
+                                            <img src="../bootstrap/image/user1.jpg" alt="user icon"/>
+                                            <span><b>Anonymous345</b></span><br/>
+                                            <span> Sunday, Jul 27, 2018</span>
+                                            <span> | </span>
+                                            <i class="fa fa-map-pin"></i><span>Austin, TX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Sidebar: Location-->
+                <div id="section-location" class="tab-content">
+                    <div id="googleMap" style="width:100%;height:500px;"></div>
+                    
+                </div>
+          
+                <!--Sidebar: Category-->
+                <div id="section-category" class="tab-content">
+                    <h3><b>Subscribed Categories</b></h3>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4 category">
+                            <div class="thumbnail">
+                                <a href="results.html"><img src="../bootstrap/image/weird_people_1.jpg" alt="weird people"></a>
+                                <div class="caption">
+                                <h3>People</h3>
+                                <p>In here, you can find all weird and fun people you want to know!</p>
+                                <p><a href="#" class="btn btn-primary" role="button">Unsubscrib</a></p>
+                            </div>
+                        </div>
+                    </div>
+                     
+                        <div class="col-sm-6 col-md-4 category">
+                            <div class="thumbnail">
+                                <a href="results.html"><img src="../bootstrap/image/weird_animals_1.jpg" alt="weird animals"></a>
+                                <div class="caption">
+                                <h3>Animals</h3>
+                                <p>Explore weird animals around the world!</p>
+                                <p><a href="#" class="btn btn-primary" role="button">Unsubscrib</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-4 category">
+                            <div class="thumbnail">
+                                <a href="results.html"><img src="../bootstrap/image/weird_events_1.jpg" alt="weird events"></a>
+                                <div class="caption">
+                                <h3>Events</h3>
+                                <p>What to know some weird events? Click here!</p>
+                                <p><a href="#" class="btn btn-primary" role="button">Unsubscrib</a></p>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                        <hr/>
+                        
+                    <h3><b>Unsubscribed Categories</b></h3>
+                    <div class="row">
+                            <div class="col-sm-6 col-md-4 category">
+                                <div class="thumbnail">
+                                    <a href="results.html"><img src="../bootstrap/image/weird_people_1.jpg" alt="weird people"></a>
+                                    <div class="caption">
+                                    <h3>People</h3>
+                                    <p>In here, you can find all weird and fun people you want to know!</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Unsubscrib</a></p>
+                                </div>
+                            </div>
+                        </div>
+                         
+                            <div class="col-sm-6 col-md-4 category">
+                                <div class="thumbnail">
+                                    <a href="results.html"><img src="../bootstrap/image/weird_animals_1.jpg" alt="weird animals"></a>
+                                    <div class="caption">
+                                    <h3>Animals</h3>
+                                    <p>Explore weird animals around the world!</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Unsubscrib</a></p>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-6 col-md-4 category">
+                                <div class="thumbnail">
+                                    <a href="results.html"><img src="../bootstrap/image/weird_events_1.jpg" alt="weird events"></a>
+                                    <div class="caption">
+                                    <h3>Events</h3>
+                                    <p>What to know some weird events? Click here!</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Unsubscrib</a></p>
+                                </div>
+                            </div>
+                            
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    function myMap() {
+    var mapProp= {
+        center:new google.maps.LatLng(51.508742,-0.120850),
+        zoom:5,
+    };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    }
+    </script>
+            
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+
+
+    <br/><br/>
+    <!-- Footer -->
+    <footer>
+        <div class="copyright col-12"> © 2018 Copyright: WoodoTeam</div>
+    </footer>
+</body>
+</html>
