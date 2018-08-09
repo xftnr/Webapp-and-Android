@@ -202,7 +202,7 @@
                 </div>
                 <!--Sidebar: Location-->
                 <div id="section-location" class="tab-content">
-                    <div id="googleMap" style="width:100%;height:500px;"></div>
+                    <div id="map"></div>
                     
                 </div>
           
@@ -287,18 +287,8 @@
         </div>
     </div>
 
-
-    <script>
-    function myMap() {
-    var mapProp= {
-        center:new google.maps.LatLng(51.508742,-0.120850),
-        zoom:5,
-    };
-    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    }
-    </script>
-            
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+    <!--Google Map API key-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRmpxad3GGbXaqYq0UfPojPfzxniok1nU&callback=initMap"></script>
 
 
     <br/><br/>
