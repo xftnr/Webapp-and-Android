@@ -131,7 +131,7 @@ class PostPage(webapp2.RequestHandler):
         # tag
         # categories = ', '.join(str(e) for e in self.request.params.getall('categories'))
         # Stmessage.theme = categories
-        post.content = self.request.get('content')
+        post.content = self.request.get('text')
         upload_images = self.request.get("images")
         post.img = images.resize(upload_images, 300,175)
         # post.image = upload_images

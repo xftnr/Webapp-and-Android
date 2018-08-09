@@ -1,145 +1,132 @@
-<html>
-    <head>
-        <!-- meta data -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Website for valveindex">
-        <meta name="author" content="Weber Chen">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- import css and script -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <title>Woodo: Eye to find weird things</title>
-        <!--Local CSS-->
-        <link rel="stylesheet" href="CSS/results.css" />
-        <script src="js/results.js"></script>
-    </head>
-    <body>
-    <!-- the body container -->
-    <div class="container">
-        <div class="top-block">
-            <!-- post area -->
-          <div class="row">
-            <div class="col-md-1">
-              <img src="image/real_logo.jpg"  alt="logo image"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Woodo: Eyes to Find Weird Things</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="../bootstrap/css/results.css" rel="stylesheet">
+    <script src="../bootstrap/js/index.js"></script>
+</head>
+<body>
+    <!--Source: https://www.youtube.com/watch?v=9cKsq14Kfsw&t=2980s-->
+    <!--Source:https://getbootstrap.com/docs/3.3/components/#pagination-->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="../bootstrap/image/logo.jpg"></a>
+            <div class="col-lg-5 searchBox">
+                <input type="text" placeholder="Search whatever you want ..."/>
             </div>
-            <div class="col-md-2 website-title">
-              Woodo
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Category
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="results.html">People</a></li>
+                    <li><a href="results.html">Animals</a></li>
+                    <li><a href="results.html">Events</a></li>
+                </ul>
             </div>
-            <div class="col-md-2">
-              <div class="w3-dropdown-click">
-                <button onclick="myFunction()" class="w3-button w3-black custon-btn-width">Category</button>
-                <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
-                  <a href="#" class="w3-bar-item w3-button">UT Austin</a>
-                  <a href="#" class="w3-bar-item w3-button">Longhorn</a>
-                  <a href="#" class="w3-bar-item w3-button">The best</a>
-                </div>
-              </div>
+            <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link newpost" href="post.html"><b>Create New Post</b></a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-5 searchBox">
-              <input type="text" placeholder="Search whatever you want and this is awesome.."/>
-            </div>
-            <div class="col-md-2">
-              <div class="login-btn">
-                  <button type="button">Login</button>
-              </div>
-              <div class="signout">
-                <button type="button">Sign Out</button>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="search">
-        Search results for "..."
-      </div>
-      <div class="body">
-          <div class="row">
-              <div class="col-md-11">
-                    <div class="each-post">
-                        <div class="post-metadata">
-                            <img src="image/user1.jpg" alt="user icon"/>
+    </nav>
+    <br/><br/>
+    <!-- Post Results Title-->
+    <h3>Search results for "animals" ...</h3>
+
+    <!-- Post Results -->
+    <div class="container-fluid padding">
+        <div class="row padding result">
+            <div class="col-lg-6">
+                <div class="each-result">
+                    <div class="result-author">
+                        <img class="user" src="../bootstrap/image/user1.jpg" alt="user icon"/>
+                        <span><b>Anonymous345</b></span>
+                        <span> | </span>
+                        <span> Sunday, Jul 27, 2018</span>
+                        <i class="fa fa-map-pin"></i><span>Austin, TX</span>
+                    </div><br/>
+                    <div class="result-content">
+                        <h4 class="card-title">This will be the title part</h4>
+                        <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 image">
+                <img class="img-fluid img-thumbnail" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+            </div>
+            <hr/>
+
+            <div class="col-lg-6">
+                    <div class="each-result">
+                        <div class="result-author">
+                            <img class="user" src="../bootstrap/image/user1.jpg" alt="user icon"/>
                             <span><b>Anonymous345</b></span>
-                            <span> | Posted on </span>
-                            <!-- {{ xxx date  -> bla bla }}-->
+                            <span> | </span>
                             <span> Sunday, Jul 27, 2018</span>
-                        </div>
-                        <div class="post-title">
-                            <h3>This will be the title part</h3>
-                        </div>
-                        <div class="post-content">
-                            This is our first post This is our first post
-                            This is our first post
-                            This is our first post
-                            This is our first post
-                            This is our first post
-                            This is our first post This is our first post
-                            This is our first post
-                            This is our first post
-                        </div>
-                        <div class="post-image">
-                            <img src="image/weird_animals_1.jpg" alt="weird animal image"/>
+                            <i class="fa fa-map-pin"></i><span>Austin, TX</span>
+                        </div><br/>
+                        <div class="result-content">
+                            <h4 class="card-title">This will be the title part</h4>
+                            <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
                         </div>
                     </div>
-                    <div class="each-post">
-                            <div class="post-metadata">
-                                <img src="image/user1.jpg" alt="user icon"/>
+                </div>
+                <div class="col-lg-6 image">
+                    <img class="img-fluid img-thumbnail" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+                </div>
+                <hr/>
+
+                <div class="col-lg-6">
+                        <div class="each-result">
+                            <div class="result-author">
+                                <img class="user" src="../bootstrap/image/user1.jpg" alt="user icon"/>
                                 <span><b>Anonymous345</b></span>
-                                <span> | Posted on </span>
-                                <!-- {{ xxx date  -> bla bla }}-->
+                                <span> | </span>
                                 <span> Sunday, Jul 27, 2018</span>
+                                <i class="fa fa-map-pin"></i><span>Austin, TX</span>
+                            </div><br/>
+                            <div class="result-content">
+                                <h4 class="card-title">This will be the title part</h4>
+                                <p class="card-text">This is our first post This is our first postThis is our first postThis is our first postThis is our first post</p>
                             </div>
-                            <div class="post-title">
-                                <h3>This will be the title part</h3>
-                            </div>
-                            <div class="post-content">
-                                This is our first post This is our first post
-                                This is our first post
-                                This is our first post
-                                This is our first post
-                                This is our first post
-                                This is our first post This is our first post
-                                This is our first post
-                                This is our first post
-                            </div>
-                            <div class="post-image">
-                                <img src="image/weird_animals_1.jpg" alt="weird animal image"/>
-                            </div>
-                        </div>
-                    <div class="each-post">
-                        <div class="post-metadata">
-                            <img src="image/user1.jpg" alt="user icon"/>
-                            <span><b>Anonymous345</b></span>
-                            <span> | Posted on </span>
-                            <!-- {{ xxx date  -> bla bla }}-->
-                            <span> Sunday, Jul 27, 2018</span>
-                        </div>
-                        <div class="post-title">
-                            <h3>This will be the title part</h3>
-                        </div>
-                        <div class="post-content">
-                            This is our first post This is our first post
-                            This is our first post
-                            This is our first post
-                            This is our first post
-                            This is our first post
-                            This is our first post This is our first post
-                            This is our first post
-                            This is our first post
-                        </div>
-                        <div class="post-image">
-                            <img src="image/weird_animals_1.jpg" alt="weird animal image"/>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <!--Back to top button-->
-                        <div class="back-to-top-btn ">
-                            <button onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
-                        </div>
+                    <div class="col-lg-6 image">
+                        <img class="img-fluid img-thumbnail" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
                     </div>
-              </div>
-          </div>
-      </div>
-    </body>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="copyright col-12"> © 2018 Copyright: WoodoTeam</div>
+    </footer>
+</body>
 </html>

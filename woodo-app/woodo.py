@@ -50,6 +50,7 @@ class Author(ndb.Model):
 
 
 
+
 class Posts(ndb.Model):
     """A main model for representing an individual Post entry."""
     author = ndb.StructuredProperty(Author)
@@ -59,6 +60,9 @@ class Posts(ndb.Model):
     date = ndb.DateTimeProperty(auto_now_add=True)
     istrue = ndb.BooleanProperty(indexed=True)
     post_image = ndb.BlobProperty()
+    title_lower = ndb.ComputedProperty(lambda self: self.title.lower())
+    categories_lower = ndb.ComputedProperty(lambda self: self.categories.lower())
+    content_lower = ndb.ComputedProperty(lambda self: self.content.lower())
 # [END Author]
 
 
@@ -69,8 +73,23 @@ class MainPage(webapp2.RequestHandler):
         
         woodo_name = self.request.get('woodo_name',
                                           DEFAULT_APP_NAME)
-        posts_query = Posts.query(
-        ancestor = woodo_key(woodo_name)).order(-Posts.date)
+
+        search_string = self.request.get('s').lower()
+        limit = ""
+        posts_query = Posts.query(ancestor=woodo_key(woodo_name))
+
+        if (search_string):
+            limit = search_string[:-1] + chr(ord(search_string[-1]) + 1)
+            posts_query = posts_query.filter(
+                ndb.OR(
+                    ndb.AND(Posts.title_lower >= search_string, Posts.title_lower < limit),
+                    ndb.AND(Posts.categories_lower >= search_string, Posts.categories_lower < limit),
+                    ndb.AND(Posts.content_lower >= search_string, Posts.content_lower < limit),
+                )
+
+            )
+        else:
+            posts_query = posts_query.order(-Posts.date)
         posts = posts_query.fetch(50)
 
         user = users.get_current_user()
