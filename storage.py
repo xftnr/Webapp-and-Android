@@ -8,7 +8,8 @@ import jinja2
 import webapp2
 
 from google.appengine.api import users
-
+from google.appengine.api import images
+# import Image
 
 # themes
 # tags
@@ -25,6 +26,7 @@ class Stmessage (ndb.Model):
     author = ndb.StructuredProperty(Author)
     create_time = ndb.DateTimeProperty(auto_now_add= True)
     # should be a list, allow one user post multiple pic in one post
+    img = ndb.BlobProperty(required = True)
     # image = ndb.BlobKeyProperty(required = True, indexed = False)
 
     title = ndb.StringProperty(required = True)
@@ -102,8 +104,7 @@ class PostPage(webapp2.RequestHandler):
              url = users.create_logout_url(self.request.uri)
              url_linktext = 'Logout'
          else:
-             url = users.create_login_url(self.request.uri)
-             url_linktext = 'Login'
+             self.redirect('/index')
 
          template_values = {
              'user': user,
@@ -131,17 +132,30 @@ class PostPage(webapp2.RequestHandler):
         # categories = ', '.join(str(e) for e in self.request.params.getall('categories'))
         # Stmessage.theme = categories
         post.content = self.request.get('content')
+        upload_images = self.request.get("images")
+        post.img = images.resize(upload_images, 300,175)
+        # post.image = upload_images
         # post.image =
         post.put()
 
         # query_params = {'woodo_name': woodo_name}
         #self.redirect('/?' + urllib.urlencode(query_params))
-        self.redirect('/index.html')
+        self.redirect('/index')
 
+class Imagehandler (webapp2.RequestHandler):
+    def get(self):
+        post_key=ndb.Key(urlsafe=self.request.get('img_id'))
+        post= post_key.get()
+        if post.img:
+            self.response.headers['Content-Type'] = 'image/png'
+            self.response.out.write(post.img)
+        else:
+            self.response.out.write('No image')
 
 app = webapp2.WSGIApplication([
         ('/', MainPage),
         ('/index', IndexPage),
-        ('/post.html', PostPage),
+        ('/post', PostPage),
+        ('/Image', Imagehandler),
         # ('/submit', Woodo),
 ], debug=True)

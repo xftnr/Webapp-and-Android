@@ -1,0 +1,6 @@
+indexes:
+- kind: Stmessage
+  ancestor: yes
+  properties:
+  - name: name
+    direction: desc
