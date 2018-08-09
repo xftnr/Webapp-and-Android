@@ -26,15 +26,17 @@ class Stmessage (ndb.Model):
     author = ndb.StructuredProperty(Author)
     create_time = ndb.DateTimeProperty(auto_now_add= True)
     # should be a list, allow one user post multiple pic in one post
-    img = ndb.BlobProperty(required = True)
-    # image = ndb.BlobKeyProperty(required = True, indexed = False)
+    # img = ndb.BlobProperty(required = True)
+    # image = ndb.BlobKeyProperty(required = True)
 
-    title = ndb.StringProperty(required = True)
-    content = ndb.StringProperty(indexed = False)
-    theme = ndb.StringProperty(required = True)
+    title = ndb.StringProperty(required = True, indexed=True)
+    content = ndb.StringProperty(indexed = True)
+    theme = ndb.StringProperty(required = True, indexed = True)
     # May need change to list, one post can have multiple tags
     # tag = ndb.StringProperty(index = False)
-
+    title_lower = ndb.ComputedProperty(lambda self: self.title.lower())
+    theme_lower = ndb.ComputedProperty(lambda self: self.theme.lower())
+    content_lower = ndb.ComputedProperty(lambda self: self.content.lower())
 
 
 # class Image(ndb.model):
@@ -64,7 +66,27 @@ class IndexPage(webapp2.RequestHandler):
 
     def get(self):
         # get all
+        search_string = self.request.get('input-search')
         posts_query = Stmessage.query()
+        if search_string:
+            temp = search_string.lower()
+            limit = search_string[:-1] + chr(ord(search_string[-1]) + 1)
+            posts_query = posts_query.filter(
+                ndb.OR(
+                    # Stmessage.title_lower.IN(temp)
+                    ndb.AND(Stmessage.title_lower >= temp, Stmessage.title_lower < limit),
+                    ndb.AND(Stmessage.theme_lower >= temp, Stmessage.theme_lower < limit),
+                    ndb.AND(Stmessage.content_lower >= temp, Stmessage.content_lower < limit),))
+
+        category = self.request.get('p_c')
+        if category:
+            self.redirect('/')
+            # posts_query = Stmessage.query(Stmessage.theme == category )
+            # posts_query = posts_query.filter(posts_query.title== temp or posts_query.theme==temp or posts_query.content==temp
+                # Stmessage.tags.lower()== temp,
+            # )
+        # else:
+            # none
         posts = posts_query.fetch(20)
 
         user = users.get_current_user()
@@ -127,13 +149,13 @@ class PostPage(webapp2.RequestHandler):
                     identity=users.get_current_user().user_id(),
                     email=users.get_current_user().email())
         post.title = self.request.get('title')
-        post.theme = self.request.get('categories')
+        post.theme = self.request.get('category')
         # tag
         # categories = ', '.join(str(e) for e in self.request.params.getall('categories'))
         # Stmessage.theme = categories
         post.content = self.request.get('text')
         upload_images = self.request.get("images")
-        post.img = images.resize(upload_images, 300,175)
+        # post.img = images.resize(upload_images, 300,175)
         # post.image = upload_images
         # post.image =
         post.put()
@@ -156,6 +178,6 @@ app = webapp2.WSGIApplication([
         ('/', MainPage),
         ('/index', IndexPage),
         ('/post', PostPage),
-        ('/Image', Imagehandler),
+        # ('/Image', Imagehandler),
         # ('/submit', Woodo),
 ], debug=True)

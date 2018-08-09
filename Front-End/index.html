@@ -22,18 +22,22 @@
     <nav class="navbar navbar-expand-md sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="index"><img src="../bootstrap/image/logo.jpg"></a>
-            <div class="col-lg-5 searchBox">
-                <input type="text" placeholder="Search whatever you want ..."/>
-            </div>
+            <form class="col-lg-5 searchBox" action = "/index">
+                <input type="text" placeholder="Search whatever you want ..." name = "input-search"/>
+            </form>
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Category
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li class="item"><a href="#">People</a></li>
-                    <li><a href="#">Animals</a></li>
-                    <li><a href="#">Events</a></li>
+					<form action = "/index" >
+						<li class="item"><input type = "button"  value="People"></li>
+	                    <li><input type = "button" value = "Animals"></li>
+	                    <li><input name="p_c" type = "button" value = "Events" href="/index"></li>
+					</form>
+
+
                 </ul>
             </div>
             <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbarResponsive">
@@ -45,16 +49,16 @@
                         <a class="nav-link active" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ url|safe }}">{{ url_linktext }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link newpost" href="post"><b>Create New Post</b></a>
+					{% if user and user.user_id() %}
+					<li class="nav-item">
+                        <a class="nav-link" href="/profile">Profile</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link newpost" href="/post"><b>Create New Post</b></a>
+                    </li>
+					{% endif %}
                 </ul>
 
             </div>
