@@ -87,3 +87,5 @@ function myFunction() {
         return tag.replace(/[^\w -]/g, '').trim().replace(/\W+/g, '-');
     }
 });
+
+
