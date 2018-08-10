@@ -77,7 +77,7 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect2">Choose your tag(s)</label>
-            <div class="tags-input" data-name="tags-input"></div>
+            <input class="tags-input" name = "input_tag" data-name="tags-input">
         </div><br/>
         <div class="form-group">
             <label for="upload_images">Choose your image(s)</label>
@@ -86,23 +86,23 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                      
+
                       <div id="drag-and-drop-zone" class="dm-uploader p-5">
                         <h3 class="mb-5 mt-5 text-muted">Drag &amp; drop images here</h3>
-            
+
                         <div class="btn btn-success btn-block mb-5">
                             <span>Choose Your Images</span>
                             <input type="file" title='Click to add Files' />
                         </div>
                       </div>
-            
+
                     </div>
                     <div class="col-md-6">
                       <div class="card h-100">
                         <div class="card-header">
                           Uploaded File List
                         </div>
-            
+
                         <ul class="list-unstyled p-2 d-flex flex-column col" id="files">
                           <li class="text-muted text-center empty">No files uploaded.</li>
                         </ul>
@@ -124,7 +124,7 @@
     <!-- File item template, use this template to show the upload process of the pictures -->
     <script type="text/html" id="files-template">
       <li class="media">
-    
+
         <img class="mr-3 mb-2 preview-img" src="https://danielmg.org/assets/image/noimage.jpg?v=v10" alt="Generic placeholder image">
 
         <div class="media-body mb-1">
@@ -132,9 +132,9 @@
             <strong>%%filename%%</strong> - Status: <span class="text-muted">Waiting</span>
           </p>
           <div class="progress mb-2">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" 
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
               role="progressbar"
-              style="width: 0%" 
+              style="width: 0%"
               aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
             </div>
           </div>

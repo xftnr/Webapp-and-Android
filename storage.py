@@ -38,7 +38,11 @@ class Stmessage (ndb.Model):
     theme_lower = ndb.ComputedProperty(lambda self: self.theme.lower())
     content_lower = ndb.ComputedProperty(lambda self: self.content.lower())
 
+class Tags (ndb.Model):
 
+    tag = ndb.StringProperty(indexed = True)
+    # dont only do one to many because I only want to implement the search function
+    postskey = ndb.KeyProperty(kind=Stmessage, repeated = True)
 # class Image(ndb.model):
 #     img = ndb.BlobKeyProperty(required = True, indexed = False)
 
@@ -66,28 +70,42 @@ class IndexPage(webapp2.RequestHandler):
 
     def get(self):
         # get all
+        tag_priority = False
         search_string = self.request.get('input-search')
-        posts_query = Stmessage.query()
         if search_string:
-            temp = search_string.lower()
-            limit = search_string[:-1] + chr(ord(search_string[-1]) + 1)
-            posts_query = posts_query.filter(
-                ndb.OR(
-                    # Stmessage.title_lower.IN(temp)
-                    ndb.AND(Stmessage.title_lower >= temp, Stmessage.title_lower < limit),
-                    ndb.AND(Stmessage.theme_lower >= temp, Stmessage.theme_lower < limit),
-                    ndb.AND(Stmessage.content_lower >= temp, Stmessage.content_lower < limit),))
+            tags_query = Tags.query(Tags.tag == search_string)
+            assert tags_query !=None
+            # assert len(tags_query) ==1
+            target = tags_query.get()
+            # assert target != None
+            if target:
+                tag_priority = True
+                listofpost = []
 
-        category = self.request.get('p_c')
+
+                for posts_key in target.postskey:
+                    listofpost.append(posts_key.get())
+            else:
+                posts_query = Stmessage.query()
+                temp = search_string.lower()
+                limit = search_string[:-1] + chr(ord(search_string[-1]) + 1)
+                posts_query = posts_query.filter(
+                    ndb.OR(
+                        # Stmessage.title_lower.IN(temp)
+                        ndb.AND(Stmessage.title_lower >= temp, Stmessage.title_lower < limit),
+                        ndb.AND(Stmessage.theme_lower >= temp, Stmessage.theme_lower < limit),
+                        ndb.AND(Stmessage.content_lower >= temp, Stmessage.content_lower < limit),))
+
+
+
+        category = self.request.get('catsearch')
         if category:
-            self.redirect('/')
-            # posts_query = Stmessage.query(Stmessage.theme == category )
-            # posts_query = posts_query.filter(posts_query.title== temp or posts_query.theme==temp or posts_query.content==temp
-                # Stmessage.tags.lower()== temp,
-            # )
-        # else:
-            # none
-        posts = posts_query.fetch(20)
+            posts_query = Stmessage.query(Stmessage.theme == category )
+
+        if tag_priority:
+            posts = listofpost
+        else:
+            posts = posts_query.fetch(20)
 
         user = users.get_current_user()
         if user:
@@ -140,6 +158,7 @@ class PostPage(webapp2.RequestHandler):
     def post(self):
 
         post = Stmessage()
+
         # alert if you do not login
         # if !(users.get_current_user()):
             # self.error(404)
@@ -150,7 +169,6 @@ class PostPage(webapp2.RequestHandler):
                     email=users.get_current_user().email())
         post.title = self.request.get('title')
         post.theme = self.request.get('category')
-        # tag
         # categories = ', '.join(str(e) for e in self.request.params.getall('categories'))
         # Stmessage.theme = categories
         post.content = self.request.get('text')
@@ -158,8 +176,30 @@ class PostPage(webapp2.RequestHandler):
         # post.img = images.resize(upload_images, 300,175)
         # post.image = upload_images
         # post.image =
-        post.put()
+        post_key = post.put()
 
+        temp_tag = [x.strip() for x in self.request.get('input_tag').lower().split(",")]
+
+        # store unique tag
+        if temp_tag:
+
+            # assert isinstance(post_, basestring)
+            # only first three tag will take
+            temp_tag = temp_tag[:3]
+            listofentity = []
+            for i in temp_tag:
+                tags = Tags()
+                exist_tag = Tags.query(Tags.tag == i )
+                # eldertag = []
+                eldertag = exist_tag.get()
+                if eldertag is None:
+                    tags.tag = i
+                    tags.postskey = [post_key]
+                    listofentity.append(tags)
+                else:
+                    eldertag.postskey.append(post_key)
+                    listofentity.append(eldertag)
+            ndb.put_multi(listofentity)
         # query_params = {'woodo_name': woodo_name}
         #self.redirect('/?' + urllib.urlencode(query_params))
         self.redirect('/index')
