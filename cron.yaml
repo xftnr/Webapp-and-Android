@@ -1,0 +1,5 @@
+cron:
+- description: "email sending"
+  url: /email
+  # target: beta
+  schedule: every day 10:00
