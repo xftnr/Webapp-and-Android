@@ -77,8 +77,13 @@ class IndexPage(webapp2.RequestHandler):
         tag_priority = False
         search_string = self.request.get('input-search')
         posts_query = Stmessage.query()
+        all_tags = Tags.query()
+        tagslist = []
+        for i in all_tags.fetch():
+            tagslist.append(i.tag)
+
         if search_string:
-            tags_query = Tags.query(Tags.tag == search_string)
+            tags_query = all_tags.filter(Tags.tag == search_string)
             assert tags_query !=None
             # assert len(tags_query) ==1
             target = tags_query.get()
@@ -114,6 +119,7 @@ class IndexPage(webapp2.RequestHandler):
         login(user, True)
 
         template_values = {
+            'autotag': tagslist,
             'user': user,
             'posts': posts,
             'url': url,
@@ -226,6 +232,7 @@ class ProfilePage (webapp2.RequestHandler):
         login(user, False)
 
         template_values = {
+
             'subscribed': subscribedlist,
             'location': listofloc,
             'user': user,
