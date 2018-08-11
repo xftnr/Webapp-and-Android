@@ -53,11 +53,6 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 def login(user, indexpage):
     if user:
-        url = users.create_logout_url(self.request.uri)
-        url_linktext = 'Logout'
-    elif indexpage:
-        url = users.create_login_url(self.request.uri)
-        url_linktext = 'Login'
         user_account = Author.query( Author.identity == user.user_id()).get()
         if user_account is None:
             new_user = Author()
@@ -66,6 +61,11 @@ def login(user, indexpage):
             new_user.subscribed = []
             new_user.a_postkey = []
             new_user.put()
+        url = users.create_logout_url(self.request.uri)
+        url_linktext = 'Logout'
+    elif indexpage:
+        url = users.create_login_url(self.request.uri)
+        url_linktext = 'Login'
     else:
         self.redirect('/index')
 
