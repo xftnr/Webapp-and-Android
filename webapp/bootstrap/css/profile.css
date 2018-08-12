@@ -21,6 +21,11 @@ outline: none;
 text-align: left;
 }
 
+#ui-id-1 {
+    z-index: 9999;
+}
+
+
 footer{
 width: 100%;
 display: block;

@@ -88,4 +88,5 @@ function myFunction() {
     }
 });
 
-
+//Dropzone js image upload
+//Source: https://codepen.io/blackjacques/pen/jyxNqL

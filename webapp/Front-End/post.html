@@ -10,8 +10,10 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="../bootstrap/css/post.css" rel="stylesheet">
+    <script src="../bootstrap/js/dropzone.js"></script>
     <link href="../bootstrap/css/jquery.dm-uploader.min.css" rel="stylesheet">
-	<script src="../bootstrap/js/post.js"></script>
+    <script src="../bootstrap/js/post.js"></script>
+    <link rel="stylesheet" href="../bootstrap/css/jquery.fileupload.css">
 </head>
 <body>
     <!--Source: https://www.youtube.com/watch?v=9cKsq14Kfsw&t=2980s-->
@@ -67,67 +69,58 @@
         </div><br/>
         <div class="form-group">
             <label for="upload_images">Choose your image(s)</label>
-            <!-- <input type="file" class="form-control-file" id="upload_images" name="images" required="required" accept="image/*"> -->
-            <!--Source: Kautube.com/drag-drop-file-upload-1912018/-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-
-                      <div id="drag-and-drop-zone" class="dm-uploader p-5">
-                        <h3 class="mb-5 mt-5 text-muted">Drag &amp; drop images here</h3>
-
-                        <div class="btn btn-success btn-block mb-5">
-                            <span>Choose Your Images</span>
-                            <input type="file" title='Click to add Files' />
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="col-md-6">
-                      <div class="card h-100">
-                        <div class="card-header">
-                          Uploaded File List
-                        </div>
-
-                        <ul class="list-unstyled p-2 d-flex flex-column col" id="files">
-                          <li class="text-muted text-center empty">No files uploaded.</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+            <!--Drag and drop images-->
+            <!--Source:http://blueimp.github.io/jQuery-File-Upload/basic.html-->
+            <span class="btn btn-success fileinput-button">
+                <i class="fas fa-plus"></i>
+                <span>Add files...</span>
+                <!-- The file input field used as target for the file upload widget -->
+                <input id="fileupload" type="file" name="files[]" multiple>
+            </span>
+            <br>
+            <br>
+            <!-- The global progress bar -->
+            <div id="progress" class="progress">
+                <div class="progress-bar progress-bar-success"></div>
             </div>
+            <!-- The container for the uploaded files -->
+            <div id="files" class="files"></div>
         </div>
         <center><input type="reset" value="Reset" class="form-btn">  <input type="submit" value="Submit" class="form-btn"></center>
     </form>
-    <br/><br/>
-    <script src="../bootstrap/js/post.js"></script>
-    <script src="../bootstrap/js/jquery.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../bootstrap/js/jquery.dm-uploader.min.js"></script>
-    <script src="../bootstrap/js/demo-ui.js"></script>
-    <script src="../bootstrap/js/demo-config.js"></script>
+    <br/>
+    <br/>
 
-    <!-- File item template, use this template to show the upload process of the pictures -->
-    <script type="text/html" id="files-template">
-      <li class="media">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../bootstrap/js/jquery.ui.widget.js"></script>
+    <script src="../bootstrap/js/jquery.iframe-transport.js"></script>
+    <script src="../bootstrap/js/jquery.fileupload.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <img class="mr-3 mb-2 preview-img" src="https://danielmg.org/assets/image/noimage.jpg?v=v10" alt="Generic placeholder image">
-
-        <div class="media-body mb-1">
-          <p class="mb-2">
-            <strong>%%filename%%</strong> - Status: <span class="text-muted">Waiting</span>
-          </p>
-          <div class="progress mb-2">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-              role="progressbar"
-              style="width: 0%"
-              aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-            </div>
-          </div>
-
-          <hr class="mt-1 mb-1" />
-        </div>
-      </li>
+    <script>
+    $(function () {
+        'use strict';
+        // Change this to the location of your server-side upload handler:
+        var url = window.location.hostname === 'blueimp.github.io' ?
+                    '//jquery-file-upload.appspot.com/' : 'server/php/';
+        $('#fileupload').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (e, data) {
+                $.each(data.result.files, function (index, file) {
+                    $('<p/>').text(file.name).appendTo('#files');
+                });
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+        }).prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    });
     </script>
     <!-- Footer -->
     <footer>
