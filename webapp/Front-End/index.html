@@ -11,6 +11,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+	<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <link href="../bootstrap/css/index.css" rel="stylesheet">
     <script src="../bootstrap/js/index.js"></script>
 </head>
@@ -22,8 +26,8 @@
     <nav class="navbar navbar-expand-md sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/index"><img src="../bootstrap/image/logo.jpg"></a>
-            <form class="col-lg-5 searchBox" action = "/index">
-                <input type="text" placeholder="Search whatever you want ..." name = "input-search"/>
+            <form class="ui-widget col-lg-5 searchBox" action = "/index">
+                <input id="searchkey" type="text" placeholder="Search whatever you want ..." name = "input-search"/>
             </form>
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -123,6 +127,17 @@
 		</div>
 	</div>
 
+
+	<script>
+		$(document).ready(function(autotag) {
+		   var availableTags  =  {{autotag|safe}}
+		   $( "#searchkey" ).autocomplete({
+			  source: availableTags
+		   });
+		});
+	 </script>
+
+	<br/><br/>
     <!-- Footer -->
     <footer>
         <div class="copyright col-12"> &copy 2018 Copyright: WoodoTeam</div>
