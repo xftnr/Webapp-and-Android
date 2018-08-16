@@ -11,6 +11,7 @@ import logging
 
 from google.appengine.api import users
 from google.appengine.api import images
+from google.appengine.api import mail
 
 # images
 
@@ -36,6 +37,7 @@ class Author(ndb.Model):
     identity = ndb.StringProperty(required = True, indexed=True)
     email = ndb.StringProperty(required = True, indexed=False)
     subscribed = ndb.StringProperty(repeated = True, indexed= True)
+    subtest = ndb.ComputedProperty(lambda self: len(self.subscribed) ==0)
     a_postkey = ndb.KeyProperty(kind=Stmessage, repeated = True)
 
 
@@ -119,7 +121,7 @@ class IndexPage(webapp2.RequestHandler):
             'url': url,
             'url_linktext': url_linktext,
         }
-
+        
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render(template_values))
 
@@ -257,8 +259,9 @@ class ProfilePage (webapp2.RequestHandler):
 
 class Emailsendhandler(webapp2.RequestHandler):
     def get (self):
-        sender_address = "woodo-apad@appspot.gserviceaccount.com"
-        temp_rec = Author.query(Author.subscribed != []).fetch()
+        sender_address = "noreply@woodo-apad.appspotmail.com"
+        temp_rec = Author.query(Author.subtest == False).fetch()
+
         for i in temp_rec:
             recivers = i.email
 

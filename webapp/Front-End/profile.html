@@ -136,6 +136,18 @@
                 <div id="section-location" class="tab-content">
                     <div id="map"></div>
 					<script>
+					function getlist() {
+					    var temp = {{listofloc|safe}}
+						// console.log(temp);
+					    var listoflocation = [];
+					    var i;
+					    for (i=0; i<temp.length; i++){
+							temploc= new google.maps.LatLng(parseFloat(temp[i]["lat"]),parseFloat(temp[i]["lon"]));
+					        listoflocation.push(temploc);
+					    }
+					    console.log(listoflocation);
+					    return listoflocation
+					}
 
 				      function initMap() {
 
@@ -151,7 +163,8 @@
 				        // Note: The code uses the JavaScript Array.prototype.map() method to
 				        // create an array of markers based on a given "locations" array.
 				        // The map() method here has nothing to do with the Google Maps API.
-				        var markers = locations.map(function(location, i) {
+						// console.log(location);
+				        var markers = getlist().map(function(location, i) {
 				          return new google.maps.Marker({
 				            position: location,
 				            label: labels[i % labels.length]
@@ -162,7 +175,7 @@
 				        var markerCluster = new MarkerClusterer(map, markers,
 				            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 				      }
-				      var locations = {{listofloc|safe}}
+
 
 </script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
