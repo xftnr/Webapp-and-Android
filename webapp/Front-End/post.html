@@ -75,17 +75,11 @@
                 <i class="fas fa-plus"></i>
                 <span>Add files...</span>
                 <!-- The file input field used as target for the file upload widget -->
-                <input id="fileupload" type="file" name="files[]" multiple>
+                <input id="fileupload" type="file" name="images" accept="image/*" required="required">
             </span>
             <br>
             <br>
-            <!-- The global progress bar -->
-            <div id="progress" class="progress">
-                <div class="progress-bar progress-bar-success"></div>
-            </div>
-            <!-- The container for the uploaded files -->
-            <div id="files" class="files"></div>
-        </div>
+
         <center><input type="reset" value="Reset" class="form-btn">  <input type="submit" value="Submit" class="form-btn"></center>
     </form>
     <br/>
@@ -94,34 +88,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../bootstrap/js/jquery.ui.widget.js"></script>
     <script src="../bootstrap/js/jquery.iframe-transport.js"></script>
-    <script src="../bootstrap/js/jquery.fileupload.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script>
-    $(function () {
-        'use strict';
-        // Change this to the location of your server-side upload handler:
-        var url = window.location.hostname === 'blueimp.github.io' ?
-                    '//jquery-file-upload.appspot.com/' : 'server/php/';
-        $('#fileupload').fileupload({
-            url: url,
-            dataType: 'json',
-            done: function (e, data) {
-                $.each(data.result.files, function (index, file) {
-                    $('<p/>').text(file.name).appendTo('#files');
-                });
-            },
-            progressall: function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('#progress .progress-bar').css(
-                    'width',
-                    progress + '%'
-                );
-            }
-        }).prop('disabled', !$.support.fileInput)
-            .parent().addClass($.support.fileInput ? undefined : 'disabled');
-    });
-    </script>
     <!-- Footer -->
     <footer>
         <div class="copyright col-12"> &copy 2018 Copyright: WoodoTeam</div>

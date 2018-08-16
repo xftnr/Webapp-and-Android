@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>Woodo: Eyes to Find Weird Things</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -23,10 +23,10 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html"><img src="../bootstrap/image/logo.jpg"></a>
-            <div class="ui-widget col-lg-5 searchBox ">
-                <input id="searchkey" type="text" placeholder="Search whatever you want ..."/>
-            </div>
+            <a class="navbar-brand" href="/index"><img src="../bootstrap/image/logo.jpg"></a>
+            <form class="ui-widget col-lg-5 searchBox " action = "/index">
+                <input id="searchkey" type="text" placeholder="Search whatever you want ..." name = "input-search"/>
+            </form>
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Category
@@ -101,7 +101,7 @@
 							{% for post in posts %}
                             <div class="col-md-4 post">
                                 <div class="card">
-                                    <img class="card-img-top postimage" src="../bootstrap/image/weird_animals_1.jpg" alt="weird animal image"/>
+                                    <img class="card-img-top postimage" src="/Image?img_id={{post.key.urlsafe()}}" alt="weird animal image"/>
                                     <div class="card-body">
                                         <h4 class="card-title">{{ post.title }}</h4>
                                         <p class="card-text">{{ post.content | truncate(66) }}</p>
@@ -135,127 +135,159 @@
                 <!--Sidebar: Location-->
                 <div id="section-location" class="tab-content">
                     <div id="map"></div>
+					<script>
 
-                </div>
+				      function initMap() {
 
-                <!--Sidebar: Category-->
-                <div id="section-category" class="tab-content">
-                    <h3><b>Subscribed Categories</b></h3>
-                    <div class="row">
-						{% if "People" in subscribed%}
-                        <div class="col-sm-6 col-md-4 category">
-                            <div class="thumbnail">
-                                <a href="results.html"><img src="../bootstrap/image/weird_people_1.jpg" alt="weird people"></a>
-                                <div class="caption">
-                                <h3>People</h3>
-                                <p>In here, you can find all weird and fun people you want to know!</p>
-                                <input type="submit" value="Unsubscrib" class="btn btn-primary">
-                            </div>
-                        </div>
-                    </div>
-					{% endif%}
-					{% if "Animals" in subscribed%}
-                        <div class="col-sm-6 col-md-4 category">
-                            <div class="thumbnail">
-                                <a href="results.html"><img src="../bootstrap/image/weird_animals_1.jpg" alt="weird animals"></a>
-                                <div class="caption">
-                                <h3>Animals</h3>
-                                <p>Explore weird animals around the world!</p>
-                                <input type="submit" value="Unsubscrib" class="btn btn-primary">
-                                </div>
-                            </div>
-                        </div>
-						{% endif%}
-						{% if "Events" in subscribed%}
-                        <div class="col-sm-6 col-md-4 category">
-                            <div class="thumbnail">
-                                <a href="results.html"><img src="../bootstrap/image/weird_events_1.jpg" alt="weird events"></a>
-                                <div class="caption">
-                                <h3>Events</h3>
-                                <p>What to know some weird events? Click here!</p>
-                                <input type="submit" value="Unsubscrib" class="btn btn-primary">
-                            </div>
-                        </div>
-                    </div>
-					{% endif%}
-                        </div>
-                        <hr/>
+				        var map = new google.maps.Map(document.getElementById('map'), {
+				          zoom: 10,
+				          center: {lat: 30.28, lng: -97.75}
+				        });
 
-                    <h3><b>Unsubscribed Categories</b></h3>
-                    <div class="row">
-						{% if "People" not in subscribed%}
-                            <div class="col-sm-6 col-md-4 category">
-                                <div class="thumbnail">
-                                    <a href="results.html"><img src="../bootstrap/image/weird_people_1.jpg" alt="weird people"></a>
-                                    <div class="caption">
-                                    <h3>People</h3>
-                                    <p>In here, you can find all weird and fun people you want to know!</p>
-                                    <input type="submit" value="Subscrib" class="btn btn-primary">
-                                </div>
-                            </div>
-                        </div>
-						{% endif%}
-						{% if "Animals" not in subscribed%}
-                            <div class="col-sm-6 col-md-4 category">
-                                <div class="thumbnail">
-                                    <a href="results.html"><img src="../bootstrap/image/weird_animals_1.jpg" alt="weird animals"></a>
-                                    <div class="caption">
-                                    <h3>Animals</h3>
-                                    <p>Explore weird animals around the world!</p>
-                                    <input type="submit" value="Subscrib" class="btn btn-primary">
-                                    </div>
-                                </div>
-                            </div>
-							{% endif%}
-							{% if "Event" not in subscribed%}
-                            <div class="col-sm-6 col-md-4 category">
-                                <div class="thumbnail">
-                                    <a href="results.html"><img src="../bootstrap/image/weird_events_1.jpg" alt="weird events"></a>
-                                    <div class="caption">
-                                    <h3>Events</h3>
-                                    <p>What to know some weird events? Click here!</p>
-                                    <input type="submit" value="Subscrib" class="btn btn-primary">
-                                </div>
-                            </div>
+				        // Create an array of alphabetical characters used to label the markers.
+				        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-                            </div>
-							{% endif%}
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+				        // Add some markers to the map.
+				        // Note: The code uses the JavaScript Array.prototype.map() method to
+				        // create an array of markers based on a given "locations" array.
+				        // The map() method here has nothing to do with the Google Maps API.
+				        var markers = locations.map(function(location, i) {
+				          return new google.maps.Marker({
+				            position: location,
+				            label: labels[i % labels.length]
+				          });
+				        });
 
-    <!--Google Map API key-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrYyCvNyWcMMzRTvvmmrcr1sLfyH_sRV4&callback=initMap"></script>
+				        // Add a marker clusterer to manage the markers.
+				        var markerCluster = new MarkerClusterer(map, markers,
+				            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+				      }
+				      var locations = {{listofloc|safe}}
 
-    <script>
-        $(document).ready(function() {
-           var availableTags  =  [
-           "ActionScript",
-            "AppleScript",
-            "Asp",
-            "BASIC",
-            "C",
-            "C++",
-            "Clojure",
-            "COBOL",
-            "ColdFusion",
-            "Erlang",
-            "Fortran",
-            "Groovy",
-            "Haskell",
-            "Java",
-            "JavaScript",
-            "Lisp",
-            "Perl",
-            "PHP",
-            "Python",
-            "Ruby",
-            "Scala",
-            "Scheme",
-           ];
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrYyCvNyWcMMzRTvvmmrcr1sLfyH_sRV4&callback=initMap">
+</script>
+</div>
+
+<!--Sidebar: Category-->
+<div id="section-category" class="tab-content">
+	<h3><b>Subscribed Categories</b></h3>
+	<div class="row">
+
+
+
+		{% if "People" in subscribed%}
+		<form method="post" action="/unsub">
+
+
+			<div class="col-sm-6 col-md-4 category">
+				<div class="thumbnail">
+					<a href="#"><img src="../bootstrap/image/weird_people_1.jpg" alt="weird people"></a>
+					<div class="caption">
+						<h3>People</h3>
+						<p>In here, you can find all weird and fun people you want to know!</p>
+						<input type="submit" name="unsubscrib" value="People" class="btn btn-primary">
+					</div>
+				</div>
+			</div>
+		</form>
+		{% endif%} {% if "Animals" in subscribed%}
+		<form method="post" action="/unsub">
+
+
+			<div class="col-sm-6 col-md-4 category">
+				<div class="thumbnail">
+					<a href="#"><img src="../bootstrap/image/weird_animals_1.jpg" alt="weird animals"></a>
+					<div class="caption">
+						<h3>Animals</h3>
+						<p>Explore weird animals around the world!</p>
+						<input type="submit" name="unsubscrib" value="Animals" class="btn btn-primary">
+					</div>
+				</div>
+			</div>
+		</form>
+		{% endif%} {% if "Events" in subscribed%}
+		<form method="post" action="/unsub">
+
+
+			<div class="col-sm-6 col-md-4 category">
+				<div class="thumbnail">
+					<a href="#"><img src="../bootstrap/image/weird_events_1.jpg" alt="weird events"></a>
+					<div class="caption">
+						<h3>Events</h3>
+						<p>What to know some weird events? Click here!</p>
+						<input type="submit" name="unsubscrib" value="Events" class="btn btn-primary">
+					</div>
+				</div>
+			</div>
+		</form>
+		{% endif%}
+	</div>
+	<hr/>
+
+	<h3><b>Unsubscribed Categories</b></h3>
+	<div class="row">
+		{% if "People" not in subscribed%}
+		<form method="post" action="/sub">
+
+
+			<div class="col-sm-6 col-md-4 category">
+				<div class="thumbnail">
+					<a href="#"><img src="../bootstrap/image/weird_people_1.jpg" alt="weird people"></a>
+					<div class="caption">
+						<h3>People</h3>
+						<p>In here, you can find all weird and fun people you want to know!</p>
+						<input type="submit" name="subscrib" value="People" class="btn btn-primary">
+					</div>
+				</div>
+			</div>
+		</form>
+		{% endif%} {% if "Animals" not in subscribed%}
+		<form method="post" action="/sub">
+
+
+			<div class="col-sm-6 col-md-4 category">
+				<div class="thumbnail">
+					<a href="#"><img src="../bootstrap/image/weird_animals_1.jpg" alt="weird animals"></a>
+					<div class="caption">
+						<h3>Animals</h3>
+						<p>Explore weird animals around the world!</p>
+						<input type="submit" name="subscrib" value="Animals" class="btn btn-primary">
+					</div>
+				</div>
+			</div>
+		</form>
+		{% endif%} {% if "Event" not in subscribed%}
+		<form method="post" action="/sub">
+
+
+			<div class="col-sm-6 col-md-4 category">
+				<div class="thumbnail">
+					<a href="#"><img src="../bootstrap/image/weird_events_1.jpg" alt="weird events"></a>
+					<div class="caption">
+						<h3>Events</h3>
+						<p>What to know some weird events? Click here!</p>
+						<input type="submit" name="subscrib" value="Events" class="btn btn-primary">
+					</div>
+				</div>
+
+			</div>
+		</form>
+		{% endif%}
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!--Google Map API key-->
+
+<script>
+        $(document).ready(function(autotag) {
+           var availableTags  =  {{autotag|safe}}
            $( "#searchkey" ).autocomplete({
               source: availableTags
            });
@@ -265,7 +297,7 @@
     <br/><br/>
     <!-- Footer -->
     <footer>
-        <div class="copyright col-12"> © 2018 Copyright: WoodoTeam</div>
+        <div class="copyright col-12"> &copy 2018 Copyright: WoodoTeam</div>
     </footer>
 </body>
 </html>

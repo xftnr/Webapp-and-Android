@@ -6,6 +6,8 @@ import urllib
 import jinja2
 import webapp2
 from random import randint
+import json
+import logging
 
 from google.appengine.api import users
 from google.appengine.api import images
@@ -16,10 +18,8 @@ from google.appengine.api import images
 class Stmessage (ndb.Model):
     create_time = ndb.DateTimeProperty(auto_now_add= True)
     # should be a list, allow one user post multiple pic in one post
-    # img = ndb.BlobProperty(required = True)
-    # image = ndb.BlobKeyProperty(required = True)
-# class Image(ndb.model):
-#     img = ndb.BlobKeyProperty(required = True, indexed = False)
+    # change here required
+    img = ndb.BlobProperty(required = False)
     title = ndb.StringProperty(required = True, indexed=True)
     content = ndb.StringProperty(indexed = True)
     theme = ndb.StringProperty(required = True, indexed = True)
@@ -35,7 +35,7 @@ class Author(ndb.Model):
     # nickname = ndb.StringProperty(required = True)
     identity = ndb.StringProperty(required = True, indexed=True)
     email = ndb.StringProperty(required = True, indexed=False)
-    subscribed = ndb.StringProperty(repeated = True)
+    subscribed = ndb.StringProperty(repeated = True, indexed= True)
     a_postkey = ndb.KeyProperty(kind=Stmessage, repeated = True)
 
 
@@ -50,24 +50,13 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-
-def login(user, indexpage):
-    if user:
-        user_account = Author.query( Author.identity == user.user_id()).get()
-        if user_account is None:
-            new_user = Author()
-            new_user.identity = user.user_id()
-            new_user.email = user.email()
-            new_user.subscribed = []
-            new_user.a_postkey = []
-            new_user.put()
-        url = users.create_logout_url(self.request.uri)
-        url_linktext = 'Logout'
-    elif indexpage:
-        url = users.create_login_url(self.request.uri)
-        url_linktext = 'Login'
-    else:
-        self.redirect('/index')
+# get tag list
+def getlist ():
+    all_tags = Tags.query()
+    tagslist = []
+    for i in all_tags.fetch():
+        tagslist.append(i.tag)
+    return tagslist
 
 
 class IndexPage(webapp2.RequestHandler):
@@ -77,11 +66,11 @@ class IndexPage(webapp2.RequestHandler):
         tag_priority = False
         search_string = self.request.get('input-search')
         posts_query = Stmessage.query()
+        # all_tags = Tags.query()
+        tagslist = getlist()
+        # for i in all_tags.fetch():
+        #     tagslist.append(i.tag)
         all_tags = Tags.query()
-        tagslist = []
-        for i in all_tags.fetch():
-            tagslist.append(i.tag)
-
         if search_string:
             tags_query = all_tags.filter(Tags.tag == search_string)
             assert tags_query !=None
@@ -116,7 +105,12 @@ class IndexPage(webapp2.RequestHandler):
             posts = posts_query.order(-Stmessage.create_time).fetch(20)
 
         user = users.get_current_user()
-        login(user, True)
+        if user:
+            url = users.create_logout_url(self.request.uri)
+            url_linktext = 'Logout'
+        else:
+            url = users.create_login_url('/login')
+            url_linktext = 'Login'
 
         template_values = {
             'autotag': tagslist,
@@ -139,7 +133,13 @@ class MainPage(webapp2.RequestHandler):
 class PostPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        login(user, False)
+        if user:
+            url = users.create_logout_url('/index')
+            url_linktext = 'Logout'
+        else:
+            self.redirect('/index')
+
+
         template_values = {
         # might: json.dumps(taglist)
             # 'taglist': taglist,
@@ -158,24 +158,24 @@ class PostPage(webapp2.RequestHandler):
         post.theme = temp_cat
         post.content = self.request.get('text')
         upload_images = self.request.get("images")
-        # post.img = images.resize(upload_images, 300,175)
-        # post.image = upload_images
+        post.img = images.resize(upload_images,  height=175)
 
         listofloc = [
-            (30.4474935,-97.8128255)
-            (30.4103041,-97.6780196)
-            (30.360989,-97.7179217)
-            (30.2248315,-97.8385755)
+            (30.4474935, -97.8128255),
+            (30.4103041, -97.6780196),
+            (30.360989, -97.7179217),
+            (30.2248315, -97.8385755)
         ]
         pick = randint(0,len(listofloc)-1)
         (post.latitude, post.longitude) = listofloc[pick]
         post_key = post.put()
 
+        user = users.get_current_user()
+
         # update author entity
         user_account = Author.query( Author.identity == user.user_id()).get()
         # impossible to be none
-        assert user_account == None
-        user_account.subscribed.append(post_key)
+        # assert user_account == None
         user_account.a_postkey.append(post_key)
         user_account.put()
 
@@ -219,22 +219,32 @@ class ProfilePage (webapp2.RequestHandler):
         user = users.get_current_user()
         user_account = Author.query( Author.identity == user.user_id()).get()
         listofpost = []
+        listoflon = []
+        listoflat = []
+        # print(user_account.a_postkey)
+        # logging.debug(user_account.a_postkey)
         for i in user_account.a_postkey:
             listofpost.append(i.get())
+            listoflat.append({"lat": i.get().latitude, "lon": i.get().longitude})
 
+        # all_tags = Tags.query()
+        tagslist = getlist()
         # subscribtion
         subscribedlist = user_account.subscribed
         # get location
-        listofloc = []
-        for i in listofpost:
-            listofloc.append({lat: posts.latitude, lng: posts.longitude})
 
-        login(user, False)
-
+        if user:
+            url = users.create_logout_url('/index')
+            url_linktext = 'Logout'
+        else:
+            self.redirect('/index')
+        # print(listoflat)
+        # logging.debug(listoflat)
         template_values = {
-
+            'autotag': json.dumps(tagslist),
             'subscribed': subscribedlist,
-            'location': listofloc,
+            'listofloc': listoflat,
+            # 'listlon': json.dumps(listoflon),
             'user': user,
             'posts': listofpost,
             'url': url,
@@ -243,30 +253,78 @@ class ProfilePage (webapp2.RequestHandler):
 
         template = JINJA_ENVIRONMENT.get_template('profile.html')
         self.response.write(template.render(template_values))
-    # def post(seld):
-        # updata subscribtion
 
 
 class Emailsendhandler(webapp2.RequestHandler):
     def get (self):
-        sender_address = "Updates@woodo-apad.appspotmail.com"
-        recivers = Author.query(Author.subscribed != []).fetch()
-        for i in recivers:
+        sender_address = "woodo-apad@appspot.gserviceaccount.com"
+        temp_rec = Author.query(Author.subscribed != []).fetch()
+        for i in temp_rec:
+            recivers = i.email
+
             mail.send_mail(sender=sender_address,
-                           to=i.email,
-                           subject="Your subscribtion has new updates",
+                           to=recivers,
+                           subject="Your subscription has new updates",
                            body="""Dear Albert:
 
-        Your subscribtion has updated. Come and check it out!
+        Your subscription has updated. Come and check it out!
 
         The Woodo Team
         """)
+
+class Loginhandler(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        # load the user
+        user_account = Author.query( Author.identity == user.user_id()).get()
+        if user_account is None:
+            new_user = Author()
+            new_user.identity = user.user_id()
+            new_user.email = user.email()
+            new_user.subscribed = []
+            new_user.a_postkey = []
+            new_user.put()
+        # go to index
+        self.redirect('/index')
+
+
+class Subscriptionhandler(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        user_account = Author.query( Author.identity == user.user_id()).get()
+        subscrib = self.request.get('subscrib')
+        user_account.subscribed.append(subscrib)
+        user_account.put()
+        self.redirect('/profile')
+
+
+class Unsubscriptionhandler(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        user_account = Author.query( Author.identity == user.user_id()).get()
+        unsubscrib = self.request.get('unsubscrib')
+        user_account.subscribed.remove(unsubscrib)
+        user_account.put()
+        self.redirect('/profile')
+
+class Errorpagehandler(webapp2.RequestHandler):
+    def get(self):
+        template_values = {
+            'url': url,
+        }
+        template = JINJA_ENVIRONMENT.get_template('error.html')
+        self.response.write(template.render(template_values))
+
 
 app = webapp2.WSGIApplication([
         ('/', MainPage),
         ('/index', IndexPage),
         ('/post', PostPage),
-        # ('/Image', Imagehandler),
+        ('/Image', Imagehandler),
         ('/profile', ProfilePage),
         ('/email',Emailsendhandler),
+        ('/login', Loginhandler),
+        ('/unsub', Unsubscriptionhandler),
+        ('/sub', Subscriptionhandler),
+        ('/*', Errorpagehandler),
 ], debug=True)
