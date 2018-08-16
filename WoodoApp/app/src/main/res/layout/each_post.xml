@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/Main"
+    android:layout_margin="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="4dp">
+
+        <ImageView
+            android:id="@+id/imgViewMain"
+            android:layout_width="261dp"
+            android:layout_height="143dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@+id/Photo"
+            android:src="@drawable/weird_animals_1" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="285dp"
+            android:layout_height="86dp"
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="16dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/post_location"
+            android:layout_width="285dp"
+            android:layout_height="31dp"
+            android:layout_below="@+id/post_info"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="16dp"
+            android:textSize="14sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/post_info"
+            android:layout_width="285dp"
+            android:layout_height="29dp"
+            android:layout_below="@+id/description"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="16dp"
+            android:textSize="14sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="285dp"
+            android:layout_height="29dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="171dp"
+            android:paddingRight="16dp"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
