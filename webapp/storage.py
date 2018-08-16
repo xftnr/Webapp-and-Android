@@ -18,7 +18,8 @@ from google.appengine.api import images
 class Stmessage (ndb.Model):
     create_time = ndb.DateTimeProperty(auto_now_add= True)
     # should be a list, allow one user post multiple pic in one post
-    img = ndb.BlobProperty(required = True)
+    # change here required
+    img = ndb.BlobProperty(required = False)
     title = ndb.StringProperty(required = True, indexed=True)
     content = ndb.StringProperty(indexed = True)
     theme = ndb.StringProperty(required = True, indexed = True)
@@ -34,7 +35,7 @@ class Author(ndb.Model):
     # nickname = ndb.StringProperty(required = True)
     identity = ndb.StringProperty(required = True, indexed=True)
     email = ndb.StringProperty(required = True, indexed=False)
-    subscribed = ndb.StringProperty(repeated = True)
+    subscribed = ndb.StringProperty(repeated = True, indexed= True)
     a_postkey = ndb.KeyProperty(kind=Stmessage, repeated = True)
 
 
@@ -223,9 +224,8 @@ class ProfilePage (webapp2.RequestHandler):
         # print(user_account.a_postkey)
         # logging.debug(user_account.a_postkey)
         for i in user_account.a_postkey:
-            listofpost.append(Stmessage.get_by_id(i.id()))
-            listoflat.append(i.get().latitude)
-            listoflon.append(i.get().longitude)
+            listofpost.append(i.get())
+            listoflat.append({"lat": i.get().latitude, "lon": i.get().longitude})
 
         # all_tags = Tags.query()
         tagslist = getlist()
@@ -238,12 +238,13 @@ class ProfilePage (webapp2.RequestHandler):
             url_linktext = 'Logout'
         else:
             self.redirect('/index')
-
+        # print(listoflat)
+        # logging.debug(listoflat)
         template_values = {
             'autotag': json.dumps(tagslist),
             'subscribed': subscribedlist,
-            'listlat': json.dumps(listoflat),
-            'listlon': json.dumps(listoflon),
+            'listofloc': listoflat,
+            # 'listlon': json.dumps(listoflon),
             'user': user,
             'posts': listofpost,
             'url': url,
@@ -257,10 +258,12 @@ class ProfilePage (webapp2.RequestHandler):
 class Emailsendhandler(webapp2.RequestHandler):
     def get (self):
         sender_address = "woodo-apad@appspot.gserviceaccount.com"
-        recivers = Author.query(Author.subscribed != []).fetch()
-        for i in recivers:
+        temp_rec = Author.query(Author.subscribed != []).fetch()
+        for i in temp_rec:
+            recivers = i.email
+
             mail.send_mail(sender=sender_address,
-                           to=i.email,
+                           to=recivers,
                            subject="Your subscription has new updates",
                            body="""Dear Albert:
 
@@ -304,6 +307,14 @@ class Unsubscriptionhandler(webapp2.RequestHandler):
         user_account.put()
         self.redirect('/profile')
 
+class Errorpagehandler(webapp2.RequestHandler):
+    def get(self):
+        template_values = {
+            'url': url,
+        }
+        template = JINJA_ENVIRONMENT.get_template('error.html')
+        self.response.write(template.render(template_values))
+
 
 app = webapp2.WSGIApplication([
         ('/', MainPage),
@@ -315,4 +326,5 @@ app = webapp2.WSGIApplication([
         ('/login', Loginhandler),
         ('/unsub', Unsubscriptionhandler),
         ('/sub', Subscriptionhandler),
+        ('/*', Errorpagehandler),
 ], debug=True)

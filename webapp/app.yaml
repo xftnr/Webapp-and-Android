@@ -8,6 +8,10 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+# - url: /email
+#   script: storage.app
+#   login: admin
+
 - url: /bootstrap
   static_dir: bootstrap
 
