@@ -23,15 +23,18 @@ class ProfileFragment : Fragment() {
         val infographics = ArrayList<Infographic>()
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
 
+        //same format as Home fragment
+        //use infographics to format what are on the card
         infographics.add(Infographic(R.string.title1, R.string.description1, R.string.post_info1, R.string.post_location1, R.drawable.weird_animals_1))
         infographics.add(Infographic(R.string.title1, R.string.description1, R.string.post_info1, R.string.post_location1, R.drawable.weird_people_1))
         infographics.add(Infographic(R.string.title1, R.string.description1, R.string.post_info1, R.string.post_location1, R.drawable.weird_events_1))
         infographics.add(Infographic(R.string.title1, R.string.description1, R.string.post_info1, R.string.post_location1, R.drawable.weird_animals_1))
 
+        //invoke the the adapter
         val adapter = AdapterInfographic(infographics)
         recyclerView.adapter = adapter
 
-        //Source: https://www.raywenderlich.com/230-introduction-to-google-maps-api-for-android-with-kotlin
+        //click button to go the map view
         val map : Button = view.findViewById(R.id.geo_view)
         map.setOnClickListener{
             val intent = Intent(activity, GeoView::class.java)
@@ -40,8 +43,6 @@ class ProfileFragment : Fragment() {
 
         return view
     }
-
-
 
     companion object {
         fun newInstance(): ProfileFragment = ProfileFragment()

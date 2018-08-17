@@ -35,6 +35,7 @@ class AdapterInfographic(var list: ArrayList<Infographic>): RecyclerView.Adapter
             val post_location : TextView = itemView.findViewById(R.id.post_location)
             val image: ImageView = itemView.findViewById(R.id.imgViewMain)
 
+            //put strings value into right spots on the card view
             title.setText(data.title)
             description.setText(data.description)
             post_info.setText(data.post_info)

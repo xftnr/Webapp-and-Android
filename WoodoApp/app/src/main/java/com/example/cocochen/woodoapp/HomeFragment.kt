@@ -22,11 +22,14 @@ class HomeFragment : Fragment() {
         val infographics = ArrayList<Infographic>()
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
 
+        //same format as Profile fragment
+        //use infographics to format what are on the card
         infographics.add(Infographic(R.string.title1, R.string.description1, R.string.post_info1, R.string.post_location1, R.drawable.weird_animals_1))
         infographics.add(Infographic(R.string.title1, R.string.description1, R.string.post_info1, R.string.post_location1, R.drawable.weird_people_1))
         infographics.add(Infographic(R.string.title1, R.string.description1, R.string.post_info1, R.string.post_location1, R.drawable.weird_events_1))
         infographics.add(Infographic(R.string.title1, R.string.description1, R.string.post_info1, R.string.post_location1, R.drawable.weird_animals_1))
 
+        //invoke the the adapter
         val adapter = AdapterInfographic(infographics)
         recyclerView.adapter = adapter
 

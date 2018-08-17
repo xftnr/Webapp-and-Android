@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     //Bottom navigation with fragments
     //Source: https://code.tutsplus.com/tutorials/how-to-code-a-bottom-navigation-bar-for-an-android-app--cms-30305
 
+    //different navigation button to different fragments
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         //make the HomeFragment() be the default fragment
+        //skip the empty mainActivity page with navigation only
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
     }
 

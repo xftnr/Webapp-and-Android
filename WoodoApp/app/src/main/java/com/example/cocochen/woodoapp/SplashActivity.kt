@@ -1,6 +1,5 @@
 package com.example.cocochen.woodoapp
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
@@ -17,9 +16,10 @@ import com.google.android.gms.common.api.ApiException
 import kotlinx.android.synthetic.main.splash_activity.*
 import kotlinx.android.synthetic.main.splash_activity.view.*
 
-const val RC_SIGN_IN = 123
+const val SIGN_IN = 1
 
 class SplashActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class SplashActivity : AppCompatActivity() {
 
         sign_in_button.setOnClickListener{
             val signInIntent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            startActivityForResult(signInIntent, SIGN_IN)
         }
 
         val acct = GoogleSignIn.getLastSignedInAccount(this)
@@ -53,7 +53,7 @@ class SplashActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -65,6 +65,7 @@ class SplashActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             sign_in_button.visibility = View.VISIBLE
+            //can only choose to login to continue to the fragments page
             //after successful login, goes to the Home fragment to view posts
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
