@@ -1,6 +1,6 @@
 indexes:
 - kind: Stmessage
-  ancestor: yes
   properties:
-  - name: name
+  - name: theme
+  - name: create_time
     direction: desc

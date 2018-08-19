@@ -17,7 +17,7 @@ from google.appengine.api import mail
 
 #main model for each post
 class Stmessage (ndb.Model):
-    create_time = ndb.DateTimeProperty(auto_now_add= True)
+    create_time = ndb.DateTimeProperty(auto_now_add= True, indexed = True)
     # should be a list, allow one user post multiple pic in one post
     # change here required
     img = ndb.BlobProperty(required = False)
@@ -121,7 +121,7 @@ class IndexPage(webapp2.RequestHandler):
             'url': url,
             'url_linktext': url_linktext,
         }
-        
+
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render(template_values))
 
@@ -316,7 +316,7 @@ class Errorpagehandler(webapp2.RequestHandler):
             'url': url,
         }
         template = JINJA_ENVIRONMENT.get_template('error.html')
-        self.response.write(template.render(template_values))
+        self.response.write(template)
 
 
 app = webapp2.WSGIApplication([
