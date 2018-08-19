@@ -8,6 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
+
 import com.example.xiapengdi.woodoandroid.Infographic
 import com.example.xiapengdi.woodoandroid.AdapterInfographic
 import com.example.xiapengdi.woodoandroid.R

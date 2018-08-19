@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swiperefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/scroll_posts"
@@ -8,7 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="58dp" />
+        android:layout_marginTop="58dp">
+    </android.support.v7.widget.RecyclerView>
 
     <SearchView
         android:layout_width="match_parent"
@@ -16,4 +25,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true" />
 
-</RelativeLayout>
+    </LinearLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
