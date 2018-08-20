@@ -9,10 +9,17 @@ from random import randint
 import json
 import logging
 
+
+
 from google.appengine.api import users
 from google.appengine.api import images
 from google.appengine.api import mail
-
+# android
+# from google.oauth2 import id_token
+# from google.auth.transport import requests
+# import cachecontrol
+# import google.auth.transport.requests
+# import requests
 # images
 
 #main model for each post
@@ -51,6 +58,10 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader('Front-End'),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+
+
+CLIENT_ID ='700802303726-dqtcl3m2gu0t7619i70b5n56rhga178j.apps.googleusercontent.com'
+
 
 # get tag list
 def getlist ():
@@ -319,6 +330,22 @@ class Errorpagehandler(webapp2.RequestHandler):
         self.response.write(template)
 
 
+
+class Mobilehandler(webapp2.RequestHandler):
+    def get(self):
+        posts = Stmessage.query().order(-Stmessage.create_time).fetch(10)
+        self.response.headers['Content-Type'] = 'application/json'
+        posts_for_json = []
+        for p in posts:
+            post_content = {
+                'title': p.title,
+                'content': p.content,
+                # if i want to use this need to change BlobProperty to blobkeyproperty
+                # 'image': images.get_serving_url(p.img)
+            }
+            posts_for_json.append(post_content)
+        self.response.write(json.dumps(posts_for_json))
+
 app = webapp2.WSGIApplication([
         ('/', MainPage),
         ('/index', IndexPage),
@@ -329,5 +356,6 @@ app = webapp2.WSGIApplication([
         ('/login', Loginhandler),
         ('/unsub', Unsubscriptionhandler),
         ('/sub', Subscriptionhandler),
+        ('/mobile/home', Mobilehandler),
         ('/*', Errorpagehandler),
 ], debug=True)

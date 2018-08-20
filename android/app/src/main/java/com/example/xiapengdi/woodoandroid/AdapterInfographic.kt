@@ -1,4 +1,4 @@
-package com.example.xiapengdi.woodoandroid
+package com.example.cxiapengdi.woodoandroid
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

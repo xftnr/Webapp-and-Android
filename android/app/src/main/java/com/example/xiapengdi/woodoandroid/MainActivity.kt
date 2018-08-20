@@ -4,7 +4,14 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 
+
+//var account: GoogleSignInAccount? = null
+//var username: String? = null
+var token: String? = null
+
+//var loggedIn: Boolean = false
 
 class MainActivity : AppCompatActivity() {
     //Bottom navigation with fragments

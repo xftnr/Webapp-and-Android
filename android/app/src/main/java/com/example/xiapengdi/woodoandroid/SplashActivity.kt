@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import com.example.xiapengdi.woodoandroid.R.id.test
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -24,6 +25,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_activity)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.server_client_id))
                 .requestEmail()
                 .build()
 
@@ -31,7 +33,6 @@ class SplashActivity : AppCompatActivity() {
 
         sign_in_button.visibility = View.VISIBLE
 
-        test.visibility = View.VISIBLE
         sign_in_button.setOnClickListener {
             val signInIntent = mGoogleSignInClient.signInIntent
             startActivityForResult(signInIntent, SIGN_IN)
@@ -39,8 +40,6 @@ class SplashActivity : AppCompatActivity() {
             val acct = GoogleSignIn.getLastSignedInAccount(this)
             if (acct != null) {
                 sign_in_button.visibility = View.VISIBLE
-                test.text = "last time"
-                test.visibility = View.VISIBLE
             }
         }
 
@@ -62,8 +61,7 @@ class SplashActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             sign_in_button.visibility = View.VISIBLE
-            test.text ="success"
-            test.visibility = View.VISIBLE
+            token = account?.idToken
             //can only choose to login to continue to the fragments page
             //after successful login, goes to the Home fragment to view posts
             val intent = Intent(this, MainActivity::class.java)
@@ -71,8 +69,6 @@ class SplashActivity : AppCompatActivity() {
 
         } catch (e: ApiException) {
             sign_in_button.visibility = View.VISIBLE
-            test.text ="fail"
-            test.visibility = View.VISIBLE
 
         }
 

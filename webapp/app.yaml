@@ -15,6 +15,9 @@ handlers:
 - url: /bootstrap
   static_dir: bootstrap
 
+- url: /mobile/.*
+  script: storage.app
+
 - url: /.*
   script: storage.app
 # [END handlers]
@@ -27,4 +30,6 @@ libraries:
   version: latest
 - name: PIL
   version: "1.1.7"
+- name: ssl
+  version: latest
 # [END libraries]
