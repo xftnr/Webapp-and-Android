@@ -30,8 +30,13 @@ class GeoView : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney
         //hard code location information
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+        val center = LatLng(30.28, -97.75)
+//        val listofloc = new ArrayList<Posts>
+//        pass a list of location for the marker, use the for loop to add location
+        mMap.addMarker(MarkerOptions().position(center).title("Marker in Austin"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(center))
     }
+
+//    data class
 }

@@ -331,7 +331,7 @@ class Errorpagehandler(webapp2.RequestHandler):
 
 
 
-class Mobilehandler(webapp2.RequestHandler):
+class MobileGethandler(webapp2.RequestHandler):
     def get(self):
         posts = Stmessage.query().order(-Stmessage.create_time).fetch(10)
         self.response.headers['Content-Type'] = 'application/json'
@@ -346,6 +346,49 @@ class Mobilehandler(webapp2.RequestHandler):
             posts_for_json.append(post_content)
         self.response.write(json.dumps(posts_for_json))
 
+
+class MobilePosthandler(webapp2.RequestHandler):
+    def post(self):
+        # new post entity
+        post = Stmessage()
+        post.title = self.request.get('title')
+        post.theme = self.request.get('category')
+        post.content = self.request.get('text')
+
+        # android get the coordinate
+        # (post.latitude, post.longitude) = listofloc[pick]
+        post_key = post.put()
+
+        user = users.get_current_user()
+
+        # update author entity
+        user_account = Author.query( Author.identity == user.user_id()).get()
+        # impossible to be none
+        # assert user_account == None
+        user_account.a_postkey.append(post_key)
+        user_account.put()
+
+        # new tag entity or update tag entity
+        temp_tag = [x.strip() for x in self.request.get('input_tag').lower().split(",")]
+        # store unique tag
+        if temp_tag:
+            # only first three tag will take
+            temp_tag = temp_tag[:3]
+            listofentity = []
+            for i in temp_tag:
+                tags = Tags()
+                exist_tag = Tags.query(Tags.tag == i )
+                eldertag = exist_tag.get()
+                if eldertag is None:
+                    tags.tag = i
+                    tags.postskey = [post_key]
+                    listofentity.append(tags)
+                else:
+                    eldertag.postskey.append(post_key)
+                    listofentity.append(eldertag)
+            ndb.put_multi(listofentity)
+        self.redirect('/')
+
 app = webapp2.WSGIApplication([
         ('/', MainPage),
         ('/index', IndexPage),
@@ -356,6 +399,7 @@ app = webapp2.WSGIApplication([
         ('/login', Loginhandler),
         ('/unsub', Unsubscriptionhandler),
         ('/sub', Subscriptionhandler),
-        ('/mobile/home', Mobilehandler),
+        ('/mobile/home', MobileGethandler),
+        ('/mobile/post', MobilePosthandler),
         ('/*', Errorpagehandler),
 ], debug=True)

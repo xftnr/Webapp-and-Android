@@ -12,6 +12,11 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.fragment_post.*
 import android.widget.Button
+
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.core.FuelManager
+import com.github.kittinunf.result.Result
+
 import android.provider.MediaStore
 import android.content.Context
 import android.content.pm.PackageManager
@@ -22,8 +27,17 @@ import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.widget.Toast
 import com.example.xiapengdi.woodoandroid.ImageActivity
 import com.example.xiapengdi.woodoandroid.R
+import android.widget.EditText
+//import javax.xml.transform.Result
 
-class PostFragment : Fragment() {
+
+class PostFragment : Fragment(), View.OnClickListener {
+    override fun onClick(v: View?) {
+        if (v === button){
+            postresponse(v)
+        }
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private val SELECT_PICTURE = 1
 
@@ -56,6 +70,33 @@ class PostFragment : Fragment() {
         }
 
         return view
+    }
+
+
+    private fun postresponse(view: View?){
+//        val text = findViewById(R.id.vnosEmaila) as EditText
+//        val value = text.text.toString()
+        val titletool = view?.findViewById(R.id.input_title) as EditText
+        val title = titletool.text.toString()
+        val contentool = view?.findViewById(R.id.textView7) as EditText
+        val content = contentool.text.toString()
+        val tagtool= view?.findViewById(R.id.input_tags) as EditText
+        val tag = tagtool.text.toString()
+        val catetool= view?.findViewById(R.id.categorySpinner) as EditText
+        val category = catetool.text.toString()
+
+//        not apply image here
+//        var image =getText(R.id.input_title)
+
+        val body = listOf("title" to title, "content" to content, "tag" to tag, "category" to category)
+        FuelManager.instance.basePath = "https://woodo-apad.appspot.com"
+        Fuel.post("/mobile/post", parameters = body)
+                .responseString{ request, response, result ->
+                    when (result){
+                        is Result.Success -> println(result)
+                    }
+                }
+
     }
 
     companion object {
