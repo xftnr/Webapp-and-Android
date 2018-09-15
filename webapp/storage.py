@@ -60,9 +60,6 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 
-CLIENT_ID ='700802303726-dqtcl3m2gu0t7619i70b5n56rhga178j.apps.googleusercontent.com'
-
-
 # get tag list
 def getlist ():
     all_tags = Tags.query()
