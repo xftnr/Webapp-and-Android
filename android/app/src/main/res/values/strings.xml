@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Woodo Android</string>
     <string name="title_activity_maps">Map</string>
-    <string name="server_client_id">700802303726-oqn5h24i34cfsd6pj056dgjoi4lcl5eq.apps.googleusercontent.com</string>
 
     <string name="title1">See what we found</string>
     <string name="description1">This is a very weird animal that people don\'t even know.
